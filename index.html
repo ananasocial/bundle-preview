@@ -1164,6 +1164,9 @@
   .ticker { width: 112vw; margin-inline: -6vw; transform: rotate(-3deg); margin-block: 40px; padding-block: 18px;
             background: linear-gradient(90deg, rgba(255,90,87,.05), rgba(255,90,87,.12), rgba(255,90,87,.05)); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   @media (max-width: 760px) { .ticker { transform: rotate(-4deg); margin-block: 30px; } .ticker-track span { font-size: 22px; gap: 24px; } }
+  /* no hard edge where "what's inside" starts: its backdrop fades in and out instead of starting with a solid color */
+  .flow-bg { -webkit-mask: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); mask: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); }
+  .flow-bg::after { background: linear-gradient(180deg, rgba(18,8,6,.35) 0%, rgba(18,8,6,.35) 100%) !important; }
 </style>
 </head>
 <body>
