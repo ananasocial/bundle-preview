@@ -1219,6 +1219,25 @@
     @keyframes echoA { to { transform: translateX(-5%); } } @keyframes echoB { to { transform: translateX(11%); } } }
   .about-grid > .stack { position: relative; z-index: 3; }
   .photo.team img.echo { top: -8%; }
+  /* journey as a road: a lane beside the cards, numbered milestones, coral fills in as you scroll */
+  .journey { position: relative; padding-inline-start: 54px; counter-reset: st; }
+  .journey::before { display: block !important; content: ""; position: absolute; top: 6px; bottom: 6px; inset-inline-start: 10px; width: 30px; border-radius: 15px;
+      background: linear-gradient(180deg, #FF8A6B 0%, var(--coral) var(--road, 0%), rgba(255,255,255,.07) var(--road, 0%)); border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 0 30px -6px rgba(255,90,87,.5); transition: background .2s; }
+  .journey::after { content: ""; position: absolute; top: 30px; bottom: 30px; inset-inline-start: 24px; width: 2px; z-index: 1;
+      background: repeating-linear-gradient(180deg, rgba(255,255,255,.55) 0 10px, transparent 10px 22px); }
+  .stop { counter-increment: st; }
+  .stop .dot, .stop.key .dot { position: absolute; z-index: 2; inset-inline-start: -50px; top: 22px; width: 42px !important; height: 42px !important; padding: 0; display: grid !important; place-items: center;
+      border-radius: 50% !important; font-size: 17px !important; font-weight: 900; color: #fff; background: #2A1613; border: 2px solid rgba(255,255,255,.3); box-shadow: 0 0 0 5px var(--night); }
+  .stop .dot::before, .stop .dot::after { content: none !important; }
+  .stop.on .dot, .stop.key.on .dot { background: var(--btn); border-color: transparent; color: #fff; box-shadow: 0 0 0 5px var(--night), 0 0 22px rgba(255,90,87,.8); }
+  .stop > div::before { content: "שלב " counter(st) " מתוך 4"; display: inline-block; font-size: 12.5px; font-weight: 800; color: var(--label); letter-spacing: .02em; }
+  .stop h3 { margin-top: 6px; }
+  .stop > div, .stop.key > div { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.03)) !important; }
+  .stop.key .key-tag { top: 16px; }
+  @media (max-width: 480px) { .journey { padding-inline-start: 46px; } .journey::before { inset-inline-start: 6px; width: 26px; } .journey::after { inset-inline-start: 18px; }
+    .stop .dot, .stop.key .dot { inset-inline-start: -46px; width: 36px !important; height: 36px !important; font-size: 15px !important; } }
+  @media (max-width: 600px) { .thoughts { display: flex !important; flex-wrap: wrap; align-items: center; gap: 4px 10px; } }
 </style>
 </head>
 <body>
@@ -2112,6 +2131,14 @@ document.documentElement.classList.add("js");
       label.textContent = open ? "סגירת הסיפורים " : "רוצים לראות פירוק של תהליך איתנו? ";
       b.textContent = open ? "" : "לחצו כאן";
     });
+  })();
+
+  // journey road fills as the reader moves down it
+  (() => {
+    const road = document.querySelector(".journey"); if (!road) return;
+    const upd = () => { const r = road.getBoundingClientRect(), mid = innerHeight * .6;
+      const p = Math.max(0, Math.min(1, (mid - r.top) / r.height)); road.style.setProperty("--road", (p * 100).toFixed(1) + "%"); };
+    addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd); upd();
   })();
 
   // proof: open a message in full; numbers count up once in view
