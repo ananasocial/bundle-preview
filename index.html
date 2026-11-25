@@ -1279,6 +1279,14 @@
     .sec.close { padding-block: 72px 88px; }
   }
   .msgs-head .script { margin-bottom: 10px; }
+  /* hero: one equal gap between every element */
+  .hero-c { gap: 28px; }
+  .hero-c .core, .hero-c .core2 { gap: 28px; }
+  .hero-c .core > *, .hero-c .core2 > *, .hero-c > .cluster { margin-block: 0 !important; }
+  .hero-c .core .script { margin-bottom: -8px !important; }
+  .sec.hero { padding-top: 130px; }
+  @media (min-width: 900px) { .hero-c { row-gap: 28px; } .sec.hero { padding-top: 160px; } }
+  .hero-c .core .script { margin-top: 7px !important; }
 </style>
 </head>
 <body>
