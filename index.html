@@ -1190,6 +1190,17 @@
     @keyframes ghostA { to { transform: translateX(-23%) scale(.96); } }
     @keyframes ghostB { to { transform: translateX(23%) scale(.96); } }
   }
+  /* echoes: sideways smear, soft on every edge (no rectangles, no strips) */
+  .photo.team img.ghost {
+    -webkit-mask: linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 45%, transparent 85%);
+    -webkit-mask-composite: source-in;
+    mask: linear-gradient(90deg, transparent 0%, #000 22%, #000 78%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 14%, #000 45%, transparent 85%);
+    mask-composite: intersect; }
+  .photo.team img.gh-a { filter: url(#smear-coral); opacity: .9; }
+  .photo.team img.gh-b { filter: url(#smear-pink); opacity: .85; }
+  .photo.team img.gh-c { filter: url(#smear-coral) blur(10px); opacity: .45; }
+  @media (min-width: 900px) { .photo.team img.gh-c { display: none; } .photo.team img.gh-a { transform: translateX(-13%) scale(.96); } .photo.team img.gh-b { transform: translateX(13%) scale(.96); }
+    @keyframes ghostA { to { transform: translateX(-16%) scale(.96); } } @keyframes ghostB { to { transform: translateX(16%) scale(.96); } } }
 </style>
 </head>
 <body>
@@ -1573,6 +1584,8 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <filter id="duo-coral" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="1 1"/><feFuncG type="table" tableValues=".33 .78"/><feFuncB type="table" tableValues=".32 .66"/></feComponentTransfer></filter>
   <filter id="duo-pink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues=".99 1"/><feFuncG type="table" tableValues=".52 .86"/><feFuncB type="table" tableValues=".62 .95"/></feComponentTransfer></filter>
+  <filter id="smear-coral" x="-40%" y="-10%" width="180%" height="120%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="1 1"/><feFuncG type="table" tableValues=".33 .78"/><feFuncB type="table" tableValues=".32 .66"/></feComponentTransfer><feGaussianBlur stdDeviation="16 2"/></filter>
+  <filter id="smear-pink" x="-40%" y="-10%" width="180%" height="120%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues=".99 1"/><feFuncG type="table" tableValues=".52 .86"/><feFuncB type="table" tableValues=".62 .95"/></feComponentTransfer><feGaussianBlur stdDeviation="16 2"/></filter>
 </svg>
       <img class="ghost gh-a" src="assets/team.png" alt="" aria-hidden="true" width="800" height="771" loading="lazy">
       <img class="ghost gh-b" src="assets/team.png" alt="" aria-hidden="true" width="800" height="771" loading="lazy">
