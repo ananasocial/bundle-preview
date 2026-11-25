@@ -916,6 +916,24 @@
   .photo.team::before { background: radial-gradient(closest-side, rgba(255,90,87,.75), rgba(253,146,163,.38) 55%, transparent 100%); filter: blur(46px); }
   @media (max-width: 759px) { .team-word { font-size: 22vw; transform: translate(-50%, -30%); } }
   @media (min-width: 760px) { .team-word { font-size: clamp(90px, 9.5vw, 150px); } }
+
+  /* ===== message carousels: real screenshots, simple swipe row ===== */
+  .msgs { margin-top: 70px; display: grid; gap: 18px; }
+  .msgs-head { text-align: center; display: grid; gap: 6px; justify-items: center; }
+  .msgs-head p { color: var(--ink-2); font-size: 15px; font-weight: 700; }
+  .msgs-row { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 10px 4px 24px; scrollbar-width: none;
+              -webkit-mask: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+  .msgs-row::-webkit-scrollbar { display: none; }
+  .msg { all: unset; cursor: zoom-in; flex: none; scroll-snap-align: center; height: clamp(300px, 42vw, 400px); border-radius: 20px; overflow: hidden; background: #F7F1EA;
+         box-shadow: 0 24px 44px -22px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.12); transition: transform .3s; }
+  .msg:hover { transform: translateY(-4px); }
+  .msg:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+  .msg img { height: 100%; width: auto; max-width: min(82vw, 520px); object-fit: contain; object-position: top; }
+  .msgs-nav { display: flex; gap: 12px; justify-content: center; }
+  .msgs-nav .pbtn:first-child svg { transform: scaleX(-1); }
+  .msgs-row { align-items: center; }
+  .msg { height: auto; width: min(78vw, 340px); }
+  .msg img { width: 100%; height: auto; max-width: none; max-height: 460px; object-fit: cover; object-position: top; }
 </style>
 </head>
 <body>
@@ -1250,6 +1268,12 @@
         <h3 class="title sm">קורס "סטורי טו טל". <span class="hot">הסטורי שמוכר.</span></h3>
         <p class="lead">האלגוריתם של הסטורי, השקות, בילדאפ וקידומי מכירה. <strong>איך הסטורי מפסיק להיות "יומן" ומתחיל למכור.</strong></p>
       </div>
+    </div>
+
+    <div class="msgs" data-msgs aria-label="הודעות אמיתיות על הסטורי">
+      <div class="msgs-head reveal"><span class="script">ומה קרה להן בסטורי?</span><p>הודעות אמיתיות מתלמידות. לחצו להגדלה.</p></div>
+      <div class="msgs-row" data-msgs-row><button type="button" class="msg" data-proof="assets/msg-story-4.png" aria-label="גל: ההשקה עשתה יותר מחמש ספרות, 11,000 ₪ מסטורי"><img src="assets/msg-story-4.png" alt="גל: ההשקה עשתה יותר מחמש ספרות, 11,000 ₪ מסטורי" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-2.webp" aria-label="אילנית: 40 לידים מהשקה קטנה של מוצר אינטרנטי"><img src="assets/msg-story-2.webp" alt="אילנית: 40 לידים מהשקה קטנה של מוצר אינטרנטי" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-1.png" aria-label="אופיר: סולד אאוט על המכירה המוקדמת, מ-3,000 צפיות בסטורי"><img src="assets/msg-story-1.png" alt="אופיר: סולד אאוט על המכירה המוקדמת, מ-3,000 צפיות בסטורי" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-10.jpg" aria-label="סגרתי 4 מקומות תוך שעתיים, ויש לי עוד 17 לידים"><img src="assets/msg-story-10.jpg" alt="סגרתי 4 מקומות תוך שעתיים, ויש לי עוד 17 לידים" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-9.jpg" aria-label="תפארת: 4 לידים שנסגרו מהסטורי השבוע"><img src="assets/msg-story-9.jpg" alt="תפארת: 4 לידים שנסגרו מהסטורי השבוע" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-8.png" aria-label="אור: 2,400 צפיות בסטורי בשעתיים ועשרות מתעניינות"><img src="assets/msg-story-8.png" alt="אור: 2,400 צפיות בסטורי בשעתיים ועשרות מתעניינות" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-6.webp" aria-label="עדי: 4,599 צפיות בסטורי, יותר מפי 3"><img src="assets/msg-story-6.webp" alt="עדי: 4,599 צפיות בסטורי, יותר מפי 3" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-5.png" aria-label="הסטורי לא עלה על 700, ועכשיו 1,587 צפיות"><img src="assets/msg-story-5.png" alt="הסטורי לא עלה על 700, ועכשיו 1,587 צפיות" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-7.png" aria-label="הצפיות קפצו מאז שהתחלתי להשתמש בטכניקות מהשיעור"><img src="assets/msg-story-7.png" alt="הצפיות קפצו מאז שהתחלתי להשתמש בטכניקות מהשיעור" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-3.png" aria-label="צופיה, יוצרת תוכן 3 שנים: איך למכור ולייצר המרות רק בסטורי"><img src="assets/msg-story-3.png" alt="צופיה, יוצרת תוכן 3 שנים: איך למכור ולייצר המרות רק בסטורי" loading="lazy"></button></div>
+      <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="ההודעה הקודמת"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="ההודעה הבאה"><svg class="ic"><use href="#arrow"/></svg></button></div>
     </div>
   </div>
 </section>
@@ -1630,6 +1654,22 @@ document.documentElement.classList.add("js");
       gf.addEventListener("pointerleave", () => gf.style.removeProperty("--gy"));
     }
   })();
+
+  // message carousels: arrows + gentle autoplay while in view (pauses when touched)
+  document.querySelectorAll("[data-msgs]").forEach(box => {
+    const row = box.querySelector("[data-msgs-row]");
+    const step = dir => { const w = row.querySelector(".msg")?.offsetWidth || 300; const max = row.scrollWidth - row.clientWidth;
+      const atEnd = Math.abs(row.scrollLeft) >= max - 8;
+      if (dir > 0 && atEnd) row.scrollTo({ left: 0 }); else row.scrollBy({ left: -dir * (w + 16) }); };
+    box.querySelector("[data-msgs-next]").addEventListener("click", () => { step(1); hold(); });
+    box.querySelector("[data-msgs-prev]").addEventListener("click", () => { step(-1); hold(); });
+    let t = null, vis = false, paused = false, pt = null;
+    const run = () => { clearInterval(t); if (vis && !paused && !matchMedia("(prefers-reduced-motion: reduce)").matches) t = setInterval(() => step(1), 3200); };
+    const hold = () => { paused = true; run(); clearTimeout(pt); pt = setTimeout(() => { paused = false; run(); }, 8000); };
+    row.addEventListener("pointerdown", hold); row.addEventListener("wheel", hold, { passive: true });
+    box.addEventListener("mouseenter", () => { paused = true; run(); }); box.addEventListener("mouseleave", () => { paused = false; run(); });
+    new IntersectionObserver(([e]) => { vis = e.isIntersecting; run(); }, { threshold: .3 }).observe(row);
+  });
 
   // proof: open a message in full; numbers count up once in view
   (() => {
