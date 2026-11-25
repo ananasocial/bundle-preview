@@ -1201,6 +1201,23 @@
   .photo.team img.gh-c { filter: url(#smear-coral) blur(10px); opacity: .45; }
   @media (min-width: 900px) { .photo.team img.gh-c { display: none; } .photo.team img.gh-a { transform: translateX(-13%) scale(.96); } .photo.team img.gh-b { transform: translateX(13%) scale(.96); }
     @keyframes ghostA { to { transform: translateX(-16%) scale(.96); } } @keyframes ghostB { to { transform: translateX(16%) scale(.96); } } }
+  /* team photo echoes: pre-rendered (color + motion trail + soft edges), so nothing is blurred live */
+  .photo.team img.echo { position: absolute; top: 0; left: -30%; width: 160%; max-width: none; z-index: 0; pointer-events: none;
+                         -webkit-mask: none; mask: none; filter: none; border-radius: 0; box-shadow: none; }
+  .photo.team img.e-coral { transform: translateX(-14%); opacity: .85; }
+  .photo.team img.e-pink { transform: translateX(14%); opacity: .75; }
+  @media (prefers-reduced-motion: no-preference) {
+    .photo.team.in img.e-coral { animation: echoA 7s ease-in-out infinite alternate; }
+    .photo.team.in img.e-pink { animation: echoB 8s ease-in-out infinite alternate; }
+    @keyframes echoA { to { transform: translateX(-18%); } }
+    @keyframes echoB { to { transform: translateX(18%); } }
+  }
+  @media (min-width: 900px) { .photo.team img.e-coral { transform: translateX(-10%); } .photo.team img.e-pink { transform: translateX(10%); }
+    @keyframes echoA { to { transform: translateX(-13%); } } @keyframes echoB { to { transform: translateX(13%); } } }
+  .photo.team::before { display: none; }
+  @media (min-width: 900px) { .photo.team img.e-coral { transform: translateX(-2%); opacity: .7; } .photo.team img.e-pink { transform: translateX(8%); }
+    @keyframes echoA { to { transform: translateX(-5%); } } @keyframes echoB { to { transform: translateX(11%); } } }
+  .about-grid > .stack { position: relative; z-index: 3; }
 </style>
 </head>
 <body>
@@ -1587,9 +1604,8 @@
   <filter id="smear-coral" x="-40%" y="-10%" width="180%" height="120%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="1 1"/><feFuncG type="table" tableValues=".33 .78"/><feFuncB type="table" tableValues=".32 .66"/></feComponentTransfer><feGaussianBlur stdDeviation="16 2"/></filter>
   <filter id="smear-pink" x="-40%" y="-10%" width="180%" height="120%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues=".99 1"/><feFuncG type="table" tableValues=".52 .86"/><feFuncB type="table" tableValues=".62 .95"/></feComponentTransfer><feGaussianBlur stdDeviation="16 2"/></filter>
 </svg>
-      <img class="ghost gh-a" src="assets/team.png" alt="" aria-hidden="true" width="800" height="771" loading="lazy">
-      <img class="ghost gh-b" src="assets/team.png" alt="" aria-hidden="true" width="800" height="771" loading="lazy">
-      <img class="ghost gh-c" src="assets/team.png" alt="" aria-hidden="true" width="800" height="771" loading="lazy">
+      <img class="echo e-coral" src="assets/team-echo-coral.webp" alt="" aria-hidden="true" width="1280" height="771" loading="lazy">
+      <img class="echo e-pink" src="assets/team-echo-pink.webp" alt="" aria-hidden="true" width="1280" height="771" loading="lazy">
       <img src="assets/team.png" alt="נופר ונוי, ANANAS" width="800" height="771" loading="lazy">
       <div class="float glass auth">
         <div class="auth-row">
