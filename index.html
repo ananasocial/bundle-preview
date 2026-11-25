@@ -1044,6 +1044,26 @@
   }
   .cases .seats i.on, .cases .deals i.on { background: var(--btn); border-color: transparent; color: #fff; }
   @media (max-width: 520px) { .deals { flex-wrap: nowrap; gap: 7px; } .deals i { width: 50px; height: 50px; font-size: 19px; } .deals i.last { padding: 0 10px; } }
+  /* cases: the breakdown is closed until asked for */
+  .case-open { all: unset; cursor: pointer; justify-self: stretch; display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; text-align: center;
+               padding: 16px 20px; border-radius: 20px; font-size: 16px; font-weight: 700; color: var(--ink); background: #fff; border: 2px dashed rgba(255,90,87,.45);
+               box-shadow: 0 14px 30px -18px rgba(140,40,30,.5); transition: .3s; }
+  .case-open b { color: #E8433F; font-weight: 900; }
+  .case-open .ic { width: 18px; height: 18px; stroke: #E8433F; fill: none; stroke-width: 2.4; transform: rotate(-90deg); transition: transform .4s; }
+  .case-open:hover { border-style: solid; transform: translateY(-2px); }
+  .case-open:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+  .case-open[aria-expanded="true"] { background: rgba(255,255,255,.5); border-style: solid; }
+  .case-open[aria-expanded="true"] .ic { transform: rotate(90deg); }
+  .case-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .6s cubic-bezier(.2,.9,.3,1); }
+  .case-more > .case-more-in { overflow: hidden; display: grid; gap: 14px; min-height: 0; }
+  .case-more.open { grid-template-rows: 1fr; }
+  .case-more .cs-steps li { opacity: 0; transform: translateY(16px); transition: opacity .45s, transform .5s cubic-bezier(.2,1.2,.4,1); }
+  .case-more.open .cs-steps li { opacity: 1; transform: none; }
+  .case-more.open .cs-steps li:nth-child(1) { transition-delay: .15s; }
+  .case-more.open .cs-steps li:nth-child(2) { transition-delay: .45s; }
+  .case-more.open .cs-steps li:nth-child(3) { transition-delay: .75s; }
+  .case-more-in > .cs-steps { padding-top: 4px; }
+  @media (prefers-reduced-motion: reduce) { .case-more, .case-more .cs-steps li { transition: none; } }
 </style>
 </head>
 <body>
@@ -1542,6 +1562,8 @@
         <h3>אור יוסיפוביץ</h3>
         <div class="case-big"><b class="hot" data-seats-n>0/20</b><span>כיתה מלאה, כבר במחזור הראשון</span></div>
         <div class="seats" data-seats aria-hidden="true"></div>
+        <button type="button" class="case-open" data-more-btn aria-expanded="false">רוצים לראות פירוק של התהליך איתנו? <b>לחצו כאן</b><svg class="ic" aria-hidden="true"><use href="#arrow"/></svg></button>
+        <div class="case-more" data-more><div class="case-more-in">
         <ol class="cs-steps">
           <li><em>מה היה</em>אור עבדה אצלנו שנתיים, עם עשרות עסקים. היא רצתה להפוך את כל הידע הזה לקורס פרונטלי ופרקטי.</li>
           <li><em>מה עשינו</em>פיצחנו מה הייחודי שהיא מביאה, פירקנו את הידע לשיעורים, בנינו תוכנית למידה ופרקטיקה, ומשם תוכנית שיווק עם השקה.</li>
@@ -1550,6 +1572,7 @@
           </li>
         </ol>
         <button type="button" class="case-see" data-proof="assets/case-or-chat.webp" aria-label="ההודעות של אור מיום ההשקה ועד 14/20">לראות את ההודעות שלה</button>
+        </div></div>
       </div>
     </article>
 
@@ -1561,12 +1584,15 @@
         <h3>אבישג משעול</h3>
         <div class="case-big"><b class="hot">6 ליווים</b><span>תוך 24 שעות מיום ההשקה</span></div>
         <div class="clock24" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="c-bg"/><circle cx="60" cy="60" r="52" class="c-fg" pathLength="1"/></svg><div><b data-clock24>0</b><span>ליווים</span></div></div>
+        <button type="button" class="case-open" data-more-btn aria-expanded="false">רוצים לראות פירוק של התהליך איתנו? <b>לחצו כאן</b><svg class="ic" aria-hidden="true"><use href="#arrow"/></svg></button>
+        <div class="case-more" data-more><div class="case-more-in">
         <ol class="cs-steps">
           <li><em>מה היה</em>אבישג התפוצצה ברשתות בזכות הסיפורים שלה, אבל לא הצליחה לחבר את הכישרון הזה לשירות ולמודל עסקי שמכניס כסף.</li>
           <li><em>מה עשינו</em>הבנו מה היא רוצה לתת ולאיזה קהל, ותרגמנו את זה לתוכנית ליווי פרקטית. ואז בנינו איתה השקה.</li>
           <li><em>מה יצא</em>6 ליווים תוך 24 שעות. ובמילים שלה: <q>וזה מעל ומעבר למה שציפיתי</q></li>
         </ol>
         <button type="button" class="case-see" data-proof="assets/proof-avishag.jpg" aria-label="ההודעה מאבישג: סגרתי 6 ליווים תוך 24 שעות">לראות את ההודעה שלה</button>
+        </div></div>
       </div>
     </article>
 
@@ -1578,12 +1604,15 @@
         <h3>אביה רזניקוב</h3>
         <div class="case-big"><b class="hot">4 לקוחות</b><span>בעסקה ממוצעת של 10,000 ₪ ומעלה, תוך פחות מחודשיים</span></div>
         <div class="deals" aria-hidden="true"><i>1</i><i>2</i><i>3</i><i class="last">4<small dir="ltr">14,396 ₪</small></i></div>
+        <button type="button" class="case-open" data-more-btn aria-expanded="false">רוצים לראות פירוק של התהליך איתנו? <b>לחצו כאן</b><svg class="ic" aria-hidden="true"><use href="#arrow"/></svg></button>
+        <div class="case-more" data-more><div class="case-more-in">
         <ol class="cs-steps">
           <li><em>מה היה</em>אחרי שעזרנו לאביה להקים סוכנות סושיאל, היא הייתה מוכנה לשלב הבא: תוכנית ליווי לבעלות עסקים.</li>
           <li><em>מה עשינו</em>הגדרנו את הקהל, בנינו פרוטוקול לכל פגישה בליווי ופלו שמוביל לתוצאות. ואז תוכנית שיווק.</li>
           <li><em>מה יצא</em>4 לקוחות תוך פחות מחודשיים. הרביעית נסגרה ב-14,396 ₪.</li>
         </ol>
         <button type="button" class="case-see" data-proof="assets/proof-aviya.png" aria-label="ההודעה מאביה: התראת תשלום על 14,396 ₪">לראות את ההודעה שלה</button>
+        </div></div>
       </div>
     </article>
 
@@ -1907,6 +1936,19 @@ document.documentElement.classList.add("js");
     let seen = false;
     new IntersectionObserver(([e], o) => { if (e.isIntersecting && !seen) { seen = true; play("or"); o.disconnect(); } }, { threshold: .5 }).observe(document.querySelector("[data-seats]"));
   })();
+
+  // cases: open / close the process breakdown
+  document.querySelectorAll("[data-more-btn]").forEach(btn => {
+    const box = btn.nextElementSibling, b = btn.querySelector("b");
+    btn.addEventListener("click", () => {
+      const open = !box.classList.contains("open");
+      box.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", open);
+      btn.firstChild.textContent = open ? "סגירת הפירוק " : "רוצים לראות פירוק של התהליך איתנו? ";
+      b.textContent = open ? "" : "לחצו כאן";
+      if (open && btn.closest('[data-case="or"]')) { const steps = btn.closest("[data-case]").querySelectorAll(".otl i.on"); if (!steps.length) document.querySelector('[data-case-tab="or"]').click(); }
+    });
+  });
 
   // proof: open a message in full; numbers count up once in view
   (() => {
