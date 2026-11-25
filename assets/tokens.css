@@ -1,0 +1,54 @@
+/* Ananas base — generated from tokens.json */
+:root, [data-theme="dark"] {
+  --night: #120B09;
+  --choc: #1A0D0A;
+  --choc-mid: #2A120C;
+  --choc-warm: #3A160C;
+  --cream: #FFF6F0;
+  --muted: #E9D6CB;
+  --sand: #D9C2B6;
+  --blush: #F4B9A0;
+  --ember: #F2603A;
+  --orange: #FF8A4C;
+  --peach: #FFC08F;
+  --hot-light: #FFE7D4;
+  --hot-mid: #FFB98A;
+  --button-circle: #FFF9F5;
+  --glass-top: rgba(255,246,240,.16);
+  --glass-bottom: rgba(255,246,240,.05);
+  --glass-edge: rgba(255,246,240,.24);
+  --glass-chip-top: rgba(255,246,240,.24);
+  --scrim: rgba(18,9,6,.55);
+  --shadow-glass: inset 0 1px 0 rgba(255,255,255,.28), inset 0 -14px 30px rgba(255,150,90,.08), 0 24px 50px -22px rgba(0,0,0,.6);
+  --shadow-pill: inset 0 1px 0 rgba(255,255,255,.55), inset 0 -8px 16px rgba(200,60,20,.2), 0 18px 40px -12px rgba(242,96,58,.85);
+  --shadow-play: 0 10px 26px rgba(0,0,0,.4), 0 0 0 8px rgba(255,249,245,.16);
+}
+:root {
+  --space-section: 120px;
+  --space-columns: 70px;
+  --space-grid: 28px;
+  --space-stack: 26px;
+  --space-gutter: 24px;
+  --space-card: 22px;
+  --radius-pill: 999px;
+  --radius-phone: 48px;
+  --radius-frame: 36px;
+  --radius-card: 30px;
+  --radius-image: 22px;
+  --radius-row: 20px;
+  --blur-glass: 18px;
+  --blur-glow: 90px;
+  --font-he: Almoni, "Arial Hebrew", Arial, sans-serif;
+  --font-en: "Josefin Sans", "Avenir Next", Arial, sans-serif;
+}
+.hero-title { font-family: var(--font-he); font-size: 104px; line-height: 0.98; font-weight: 900; letter-spacing: -0.01em }
+.section-title { font-family: var(--font-he); font-size: 84px; line-height: 1; font-weight: 900; letter-spacing: -0.01em }
+.section-title-lead { font-family: var(--font-he); font-size: 52px; line-height: 1.1; font-weight: 400 }
+.price { font-family: var(--font-he); font-size: 96px; line-height: 0.92; font-weight: 900; letter-spacing: -0.03em }
+.card-title { font-family: var(--font-he); font-size: 30px; line-height: 1.15; font-weight: 900 }
+.lead { font-family: var(--font-he); font-size: 22px; line-height: 1.6; font-weight: 400 }
+.body { font-family: var(--font-he); font-size: 18px; line-height: 1.5; font-weight: 400 }
+.button { font-family: var(--font-he); font-size: 19px; line-height: 1; font-weight: 700 }
+.chip { font-family: var(--font-he); font-size: 17px; line-height: 1.2; font-weight: 400 }
+.meta { font-family: var(--font-he); font-size: 14px; line-height: 1.3; font-weight: 700 }
+.slogan { font-family: var(--font-en); font-size: 14px; line-height: 1.4; font-weight: 400; letter-spacing: 0.24em }
