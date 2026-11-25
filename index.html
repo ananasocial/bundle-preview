@@ -1071,6 +1071,15 @@
   .cases .case-more.open > .case-more-in { padding: 26px 2px 10px; }
   .cases .case-more:not(.open) > .case-more-in { visibility: hidden; transition: padding .6s, visibility 0s .6s; }
   .cases .case-more.open > .case-more-in { overflow: visible; }
+  /* cases: less pink, warm neutral cream with coral only as an accent */
+  .cases { background: linear-gradient(175deg, #FCF9F6 0%, #F6EFE9 60%, #F1E8E1 100%); }
+  .cases .case { background: #fff; border-color: rgba(42,15,11,.06); box-shadow: 0 30px 60px -34px rgba(60,30,20,.35); }
+  .cases .cs-steps li { background: #F8F3EF; box-shadow: none; }
+  .cases .cs-steps li:not(:last-child)::after { background: #fff; }
+  .cases .case-open { background: #fff; border-color: rgba(42,15,11,.18); }
+  .cases .case-open[aria-expanded="true"] { background: transparent; }
+  .cases .case-tab { box-shadow: 0 8px 20px -14px rgba(60,30,20,.35); }
+  .cases .case-tag { background: #F8F3EF; border-color: rgba(42,15,11,.1); }
 </style>
 </head>
 <body>
