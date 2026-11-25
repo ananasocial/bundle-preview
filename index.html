@@ -1287,6 +1287,14 @@
   .sec.hero { padding-top: 130px; }
   @media (min-width: 900px) { .hero-c { row-gap: 28px; } .sec.hero { padding-top: 160px; } }
   .hero-c .core .script { margin-top: 7px !important; }
+  /* offer: value stack (anchoring) */
+  .value-stack { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+  .value-stack li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 2px; border-bottom: 1px dashed rgba(255,246,240,.14); font-size: 16.5px; font-weight: 700; }
+  .value-stack .vk { color: var(--ink); }
+  .value-stack .vv { flex: none; color: var(--ink-3); font-weight: 800; text-decoration: line-through; text-decoration-color: var(--coral); text-decoration-thickness: 2px; }
+  .value-stack .gift-v { text-decoration: none; color: #fff; background: var(--btn); padding: 3px 12px; border-radius: 999px; font-size: 13px; }
+  .value-stack .gift-row .vk::before { content: "+ "; color: var(--coral); }
+  .value-stack .vv { text-decoration: none; } .value-stack .vv s { text-decoration-color: var(--coral); text-decoration-thickness: 2px; color: var(--ink-2); }
 </style>
 </head>
 <body>
@@ -1727,11 +1735,7 @@
     <div class="offer-grid">
       <div class="offer-visual reveal"><img src="assets/bundle-cover.webp" alt="באנדל פרסונל: שיווק אנושי" width="1920" height="1080" loading="lazy"></div>
       <div class="offer glass reveal">
-        <ul class="stackl">
-          <li><svg class="ic"><use href="#check"/></svg><span>5 הדרכות מוקלטות, כחצי שעה כל אחת</span></li>
-          <li><svg class="ic"><use href="#check"/></svg><span>בונוס: קורס "סטורי טו טל"</span></li>
-          <li><svg class="ic"><use href="#check"/></svg><span>בונוס: כלי ה-AI של אננס, שמפצח לכם סדרה ו-6–10 סרטוני עומק</span></li>
-        </ul>
+        <ul class="value-stack" aria-label="מה מקבלים ומה השווי"><li><span class="vk">איפיון ומסרים</span><span class="vv" dir="rtl">שווי <s>127 ₪</s></span></li><li><span class="vk">פיצוח תדמית</span><span class="vv" dir="rtl">שווי <s>97 ₪</s></span></li><li><span class="vk">כתיבת סרטון מאפס</span><span class="vv" dir="rtl">שווי <s>197 ₪</s></span></li><li><span class="vk">פיצוח סדרות סושיאל</span><span class="vv" dir="rtl">שווי <s>167 ₪</s></span></li><li><span class="vk">אסטרטגיית ממומן</span><span class="vv" dir="rtl">שווי <s>97 ₪</s></span></li><li class="gift-row"><span class="vk">קורס סטורי מקיף</span><span class="vv gift-v">מתנה</span></li><li class="gift-row"><span class="vk">כלי AI ייחודי לפיצוח תוכן</span><span class="vv gift-v">מתנה</span></li></ul>
         <hr>
         <p class="zara">ייעוץ שיווקי אישי עולה אלפי שקלים. כאן אתם מקבלים את השיטה שלנו, את ההדרכות ואת הכלים, <strong>בפחות ממחיר של מעיל בזארה.</strong></p>
         <div>
