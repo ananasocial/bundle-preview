@@ -1167,6 +1167,29 @@
   /* no hard edge where "what's inside" starts: its backdrop fades in and out instead of starting with a solid color */
   .flow-bg { -webkit-mask: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); mask: linear-gradient(180deg, transparent 0%, #000 18%, #000 82%, transparent 100%); }
   .flow-bg::after { background: linear-gradient(180deg, rgba(18,8,6,.35) 0%, rgba(18,8,6,.35) 100%) !important; }
+  /* exposure proof in its own spot */
+  .exposure .msgs { margin-top: 0; }
+  /* team photo: coral and pink blurred echoes behind */
+  .photo.team { overflow: visible; }
+  .photo.team img.ghost { position: absolute; top: 0; left: 0; z-index: 0; width: 100%; pointer-events: none; mix-blend-mode: screen; }
+  .photo.team img.gh-a { transform: translateX(-17%) scale(.97); filter: grayscale(1) sepia(1) saturate(7) hue-rotate(-28deg) brightness(.95) blur(5px); opacity: .8; }
+  .photo.team img.gh-b { transform: translateX(17%) scale(.97); filter: grayscale(1) sepia(1) saturate(5) hue-rotate(-70deg) brightness(1.15) blur(5px); opacity: .7; }
+  .photo.team img.gh-c { transform: translateX(-30%) scale(.94); filter: grayscale(1) sepia(1) saturate(7) hue-rotate(-40deg) blur(16px); opacity: .45; }
+  .photo.team img:not(.ghost) { z-index: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    .photo.team.in img.gh-a { animation: ghostA 7s ease-in-out infinite alternate; }
+    .photo.team.in img.gh-b { animation: ghostB 8s ease-in-out infinite alternate; }
+    @keyframes ghostA { to { transform: translateX(-21%) scale(.97); } }
+    @keyframes ghostB { to { transform: translateX(21%) scale(.97); } }
+  }
+  .photo.team img.ghost { mix-blend-mode: normal; -webkit-mask: linear-gradient(180deg, #000 40%, transparent 88%); mask: linear-gradient(180deg, #000 40%, transparent 88%); }
+  .photo.team img.gh-a { filter: url(#duo-coral) blur(4px); opacity: .85; transform: translateX(-19%) scale(.96); }
+  .photo.team img.gh-b { filter: url(#duo-pink) blur(4px); opacity: .8; transform: translateX(19%) scale(.96); }
+  .photo.team img.gh-c { filter: url(#duo-coral) blur(22px); opacity: .5; transform: translateX(-34%) scale(.92); }
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes ghostA { to { transform: translateX(-23%) scale(.96); } }
+    @keyframes ghostB { to { transform: translateX(23%) scale(.96); } }
+  }
 </style>
 </head>
 <body>
@@ -1511,11 +1534,6 @@
       <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="ההודעה הקודמת"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="ההודעה הבאה"><svg class="ic"><use href="#arrow"/></svg></button></div>
     </div>
 
-    <div class="msgs" data-msgs aria-label="תוצאות אמיתיות של חשיפה">
-      <div class="msgs-head reveal"><span class="script">ומה קורה כשהתוכן בנוי נכון?</span><p>סרטונים ותוצאות של תלמידות ולקוחות. לחצו להגדלה.</p></div>
-      <div class="msgs-row" data-msgs-row><button type="button" class="msg bare" data-proof="assets/msg-exp-p6.png" aria-label="מור: חצי מיליון צפיות בסרטון, ההתחפשות שעלתה 4,700 ₪"><img src="assets/msg-exp-p6.png" alt="מור: חצי מיליון צפיות בסרטון, ההתחפשות שעלתה 4,700 ₪" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v4.png" aria-label="סרטון עם 67.9K לייקים ו-4,098 שמירות"><img src="assets/msg-exp-v4.png" alt="סרטון עם 67.9K לייקים ו-4,098 שמירות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p5.png" aria-label="סרטון עם 419K צפיות"><img src="assets/msg-exp-p5.png" alt="סרטון עם 419K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c2.png" aria-label="סרטון לפי הנוסחה של אננס: יותר מ-10 רכישות של הקורס הדיגיטלי, אורגני, תוך פחות מ-24 שעות"><img src="assets/msg-exp-c2.png" alt="סרטון לפי הנוסחה של אננס: יותר מ-10 רכישות של הקורס הדיגיטלי, אורגני, תוך פחות מ-24 שעות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p2.png" aria-label="סרטון עם 349K צפיות"><img src="assets/msg-exp-p2.png" alt="סרטון עם 349K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v6.png" aria-label="סרטון עם 22.8K לייקים"><img src="assets/msg-exp-v6.png" alt="סרטון עם 22.8K לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c1.png" aria-label="אביה: 29,866 צפיות בריל, ומאז ההודעה עלו כמעט 500 עוקבים"><img src="assets/msg-exp-c1.png" alt="אביה: 29,866 צפיות בריל, ומאז ההודעה עלו כמעט 500 עוקבים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p4.png" aria-label="סרטון עם 241.5K צפיות"><img src="assets/msg-exp-p4.png" alt="סרטון עם 241.5K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v7.png" aria-label="סרטון עם 5,405 לייקים"><img src="assets/msg-exp-v7.png" alt="סרטון עם 5,405 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p1.png" aria-label="סרטון עם 239K צפיות"><img src="assets/msg-exp-p1.png" alt="סרטון עם 239K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c3.png" aria-label="אור: הטרייל הראשון, 70 שיתופים בשעתיים"><img src="assets/msg-exp-c3.png" alt="אור: הטרייל הראשון, 70 שיתופים בשעתיים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v8.png" aria-label="סרטון עם 6,420 לייקים ו-1,475 שיתופים"><img src="assets/msg-exp-v8.png" alt="סרטון עם 6,420 לייקים ו-1,475 שיתופים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v5.png" aria-label="סרטון עם 1,503 לייקים"><img src="assets/msg-exp-v5.png" alt="סרטון עם 1,503 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v2.png" aria-label="סרטון עם 1,713 לייקים ו-320 שיתופים"><img src="assets/msg-exp-v2.png" alt="סרטון עם 1,713 לייקים ו-320 שיתופים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p3.png" aria-label="סרטון עם 185K צפיות"><img src="assets/msg-exp-p3.png" alt="סרטון עם 185K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v1.png" aria-label="סרטון עם 1,035 לייקים"><img src="assets/msg-exp-v1.png" alt="סרטון עם 1,035 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v3.png" aria-label="סרטון עם 954 לייקים"><img src="assets/msg-exp-v3.png" alt="סרטון עם 954 לייקים" loading="lazy"></button></div>
-      <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="הקודם"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="הבא"><svg class="ic"><use href="#arrow"/></svg></button></div>
-    </div>
   </div>
 </section>
 
@@ -1537,10 +1555,28 @@
   </div>
 </section>
 
+<!-- ================= EXPOSURE PROOF ================= -->
+<section class="sec tight exposure">
+  <div class="wrap">
+    <div class="msgs" data-msgs aria-label="תוצאות אמיתיות של חשיפה">
+      <div class="msgs-head reveal"><span class="script">ומה קורה כשהתוכן בנוי נכון?</span><p>סרטונים ותוצאות של תלמידות ולקוחות. לחצו להגדלה.</p></div>
+      <div class="msgs-row" data-msgs-row><button type="button" class="msg bare" data-proof="assets/msg-exp-p6.png" aria-label="מור: חצי מיליון צפיות בסרטון, ההתחפשות שעלתה 4,700 ₪"><img src="assets/msg-exp-p6.png" alt="מור: חצי מיליון צפיות בסרטון, ההתחפשות שעלתה 4,700 ₪" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v4.png" aria-label="סרטון עם 67.9K לייקים ו-4,098 שמירות"><img src="assets/msg-exp-v4.png" alt="סרטון עם 67.9K לייקים ו-4,098 שמירות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p5.png" aria-label="סרטון עם 419K צפיות"><img src="assets/msg-exp-p5.png" alt="סרטון עם 419K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c2.png" aria-label="סרטון לפי הנוסחה של אננס: יותר מ-10 רכישות של הקורס הדיגיטלי, אורגני, תוך פחות מ-24 שעות"><img src="assets/msg-exp-c2.png" alt="סרטון לפי הנוסחה של אננס: יותר מ-10 רכישות של הקורס הדיגיטלי, אורגני, תוך פחות מ-24 שעות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p2.png" aria-label="סרטון עם 349K צפיות"><img src="assets/msg-exp-p2.png" alt="סרטון עם 349K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v6.png" aria-label="סרטון עם 22.8K לייקים"><img src="assets/msg-exp-v6.png" alt="סרטון עם 22.8K לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c1.png" aria-label="אביה: 29,866 צפיות בריל, ומאז ההודעה עלו כמעט 500 עוקבים"><img src="assets/msg-exp-c1.png" alt="אביה: 29,866 צפיות בריל, ומאז ההודעה עלו כמעט 500 עוקבים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p4.png" aria-label="סרטון עם 241.5K צפיות"><img src="assets/msg-exp-p4.png" alt="סרטון עם 241.5K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v7.png" aria-label="סרטון עם 5,405 לייקים"><img src="assets/msg-exp-v7.png" alt="סרטון עם 5,405 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p1.png" aria-label="סרטון עם 239K צפיות"><img src="assets/msg-exp-p1.png" alt="סרטון עם 239K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c3.png" aria-label="אור: הטרייל הראשון, 70 שיתופים בשעתיים"><img src="assets/msg-exp-c3.png" alt="אור: הטרייל הראשון, 70 שיתופים בשעתיים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v8.png" aria-label="סרטון עם 6,420 לייקים ו-1,475 שיתופים"><img src="assets/msg-exp-v8.png" alt="סרטון עם 6,420 לייקים ו-1,475 שיתופים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v5.png" aria-label="סרטון עם 1,503 לייקים"><img src="assets/msg-exp-v5.png" alt="סרטון עם 1,503 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v2.png" aria-label="סרטון עם 1,713 לייקים ו-320 שיתופים"><img src="assets/msg-exp-v2.png" alt="סרטון עם 1,713 לייקים ו-320 שיתופים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p3.png" aria-label="סרטון עם 185K צפיות"><img src="assets/msg-exp-p3.png" alt="סרטון עם 185K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v1.png" aria-label="סרטון עם 1,035 לייקים"><img src="assets/msg-exp-v1.png" alt="סרטון עם 1,035 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v3.png" aria-label="סרטון עם 954 לייקים"><img src="assets/msg-exp-v3.png" alt="סרטון עם 954 לייקים" loading="lazy"></button></div>
+      <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="הקודם"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="הבא"><svg class="ic"><use href="#arrow"/></svg></button></div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= ABOUT ================= -->
 <section class="sec tight about blobs">
   <div class="wrap about-grid">
     <figure class="photo team reveal">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="duo-coral" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues="1 1"/><feFuncG type="table" tableValues=".33 .78"/><feFuncB type="table" tableValues=".32 .66"/></feComponentTransfer></filter>
+  <filter id="duo-pink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="table" tableValues=".99 1"/><feFuncG type="table" tableValues=".52 .86"/><feFuncB type="table" tableValues=".62 .95"/></feComponentTransfer></filter>
+</svg>
+      <img class="ghost gh-a" src="assets/team.png" alt="" aria-hidden="true" width="800" height="771" loading="lazy">
+      <img class="ghost gh-b" src="assets/team.png" alt="" aria-hidden="true" width="800" height="771" loading="lazy">
+      <img class="ghost gh-c" src="assets/team.png" alt="" aria-hidden="true" width="800" height="771" loading="lazy">
       <img src="assets/team.png" alt="נופר ונוי, ANANAS" width="800" height="771" loading="lazy">
       <div class="float glass auth">
         <div class="auth-row">
