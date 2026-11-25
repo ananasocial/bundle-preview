@@ -298,8 +298,8 @@
     @keyframes draw { to { stroke-dashoffset: 0; } }
     @keyframes fade { to { opacity: 1; } }
     @keyframes pulse { 50% { box-shadow: 0 0 0 10px rgba(255,90,87,.2), 0 0 40px 10px rgba(255,90,87,.9); } }
-    .ticker-track { animation: tick 38s linear infinite; }
-    @keyframes tick { to { transform: translateX(-50%); } }
+    .ticker-track { animation: tickerx 20s linear infinite; }
+    @keyframes tickerx { to { transform: translateX(-50%); } }
     .master .orbs span { animation: drift 12s ease-in-out infinite; } .master .o2 { animation-delay: -4s; } .master .o3 { animation-delay: -8s; }
     @keyframes drift { 33% { translate: 4vw -3vw; } 66% { translate: -3vw 2vw; } }
     .js .thought.after { opacity: 0; transform: translateY(8px) scale(.96); transition: opacity .5s ease .5s, transform .5s ease .5s; }
@@ -1080,6 +1080,86 @@
   .cases .case-open[aria-expanded="true"] { background: transparent; }
   .cases .case-tab { box-shadow: 0 8px 20px -14px rgba(60,30,20,.35); }
   .cases .case-tag { background: #F8F3EF; border-color: rgba(42,15,11,.1); }
+
+  /* ===== round of fixes 25.11 ===== */
+  /* hero: bigger headline on phones */
+  @media (max-width: 480px) { .hero-c .title { font-size: 15.2vw; } }
+  /* one continuous page: no bands between sections */
+  .hero-bg { -webkit-mask: linear-gradient(180deg, #000 70%, transparent 100%); mask: linear-gradient(180deg, #000 70%, transparent 100%); }
+  .ticker { border-block: 0; background: none; }
+  footer { background: transparent !important; }
+
+  /* offer box: a Black November ticket */
+  .fomo2.bf { padding: 0; background: #0B0605; border: 1px solid rgba(255,90,87,.35); border-radius: 28px; text-align: center;
+              box-shadow: 0 0 0 6px rgba(255,90,87,.06), 0 40px 80px -30px rgba(255,60,50,.6); }
+  .bf-tape { display: flex; width: max-content; background: var(--coral); color: #120806; font-weight: 900; font-size: 14px; letter-spacing: .06em; padding: 8px 0; direction: ltr; white-space: nowrap; }
+  .bf-tape span { padding-inline-end: 0; }
+  @media (prefers-reduced-motion: no-preference) { .bf-tape { animation: tickerx 14s linear infinite; } }
+  .bf-in { padding: 20px 20px 22px; display: grid; gap: 8px; justify-items: center; }
+  .bf-price { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; direction: rtl; }
+  .bf-was { font-size: clamp(22px, 2.6vw, 30px); font-weight: 900; color: var(--ink-3); text-decoration-color: var(--coral); text-decoration-thickness: 3px; }
+  .bf-now { font-size: clamp(64px, 9vw, 96px); font-weight: 900; line-height: .9; color: #fff; letter-spacing: -.02em; display: inline-flex; align-items: flex-start; gap: 4px; }
+  .bf-now small { font-size: .38em; margin-top: .25em; color: var(--coral); }
+  .bf-save { font-size: 14px; font-weight: 900; color: #120806; background: #fff; padding: 6px 12px; border-radius: 10px; transform: rotate(-4deg); }
+  .bf-gift { font-size: 15px; color: var(--ink-2); max-width: 30em; } .bf-gift b { color: #fff; }
+  .bf .f-label { margin-top: 6px; color: var(--ink-2); }
+  .bf .f-clock { justify-content: center !important; gap: 8px; }
+  .bf .f-clock b { position: relative; background: linear-gradient(180deg, #2A1714 0 50%, #1E100D 50% 100%); color: #fff; -webkit-text-fill-color: #fff; background-clip: border-box; -webkit-background-clip: border-box;
+                   padding: 8px 10px 6px; border-radius: 14px; font-size: clamp(46px, 6vw, 70px); box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 10px 20px -10px #000; }
+  .bf .f-clock b::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: #0B0605; }
+  .bf .f-clock em { align-self: center; }
+  .bf .f-never { font-size: 15px; }
+  @media (min-width: 980px) { .fomo2.bf { text-align: center; } }
+
+  /* journey: 4 clear steps, neutral frosted glass, coral only on step 4 */
+  .journey::before { display: none; }
+  .journey { gap: 16px; }
+  .stop { display: block; padding: 0; }
+  .stop > div, .stop.key > div { position: relative; padding: 22px 20px 20px; margin: 0; border-radius: 26px;
+      background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(22px) saturate(1.1); -webkit-backdrop-filter: blur(22px) saturate(1.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 24px 50px -30px rgba(0,0,0,.9); }
+  .stop.key > div { border-color: rgba(255,90,87,.45); }
+  .stop .dot { position: absolute; z-index: 2; margin: 18px 18px 0 0; width: auto; height: auto; padding: 4px 12px; border-radius: 999px; font-size: 13px !important;
+               background: rgba(255,255,255,.1); box-shadow: none; color: var(--ink-2); }
+  .stop .dot::before { content: "שלב "; } .stop .dot::after { content: " מתוך 4"; }
+  .stop.key .dot { width: auto; height: auto; background: var(--coral); color: #fff; }
+  .stop.on .dot { background: #fff; color: #120806; }
+  .stop h3 { margin-top: 30px; font-size: clamp(26px, 3vw, 36px); }
+  .stop.key .key-tag { position: absolute; left: 18px; top: 18px; margin: 0; font-size: 12px; }
+  .thoughts { grid-template-columns: auto auto 1fr !important; align-items: center; gap: 10px; }
+  .thought { padding: 0; border-radius: 0; background: none !important; box-shadow: none !important; font-size: clamp(16px, 1.8vw, 21px); }
+  .thought.before { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--coral); text-decoration-thickness: 2px; border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .thought.after { color: #fff; font-weight: 900; }
+  .thought small { display: none; }
+  .arr { display: block !important; width: 20px; height: 20px; color: var(--ink-3); flex: none; }
+  .stop .how { font-size: 16px; }
+  @media (max-width: 979px) { .stop > div, .stop.key > div { padding-inline-end: 20px !important; margin-inline-end: 0 !important; } .journey { padding-top: 0 !important; } }
+
+  /* bonuses: one gifts section */
+  .gifts-head { margin-top: 90px; }
+  .gift-pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .gift-pills a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; text-decoration: none; color: var(--ink); font-weight: 700; font-size: 15px;
+                  background: linear-gradient(160deg, rgba(255,255,255,.1), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.14); }
+  .gift-pills b { font-size: 12px; padding: 3px 9px; border-radius: 999px; background: var(--btn); color: #fff; }
+  .gifts-head + .ai-demo { margin-top: 40px; }
+
+  /* about: photo melts into the page, stats as 3 frosted squares */
+  .photo.team::before { opacity: .55; }
+  .photo.team img { -webkit-mask: linear-gradient(180deg, #000 55%, transparent 94%); mask: linear-gradient(180deg, #000 55%, transparent 94%); }
+  .photo.team .float.auth { background: none !important; border: 0 !important; box-shadow: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; padding: 0 !important; margin-top: -90px; position: relative; z-index: 2; }
+  .auth-row { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 10px !important; }
+  .auth-row > div { padding: 16px 8px 14px; border-radius: 20px; background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.16);
+                    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: inset 0 1px 0 rgba(255,255,255,.18); }
+  .auth-row b { background: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important; color: #fff !important; -webkit-text-fill-color: #fff; font-size: clamp(24px, 3vw, 32px) !important; }
+  .auth-row span { white-space: normal !important; font-size: 12px !important; color: var(--ink-2) !important; line-height: 1.25; }
+  .auth-line { border-top: 0 !important; padding-top: 4px !important; margin-top: 6px !important; color: var(--ink-2) !important; }
+  .stop { position: relative; }
+  .bf-tape-w { direction: ltr; overflow: hidden; background: var(--coral); }
+  .stop .dot { display: inline-flex !important; align-items: center; white-space: nowrap; width: auto !important; height: auto !important; border-radius: 999px !important;
+               top: 18px; inset-inline-start: 18px; margin: 0 !important; line-height: 1.2; }
+  .stop h3 { margin-top: 36px; }
+  @media (max-width: 480px) { .hero-c .chip { font-size: 14px; padding: 8px 14px; } }
+  .stop .dot { gap: .3em; }
 </style>
 </head>
 <body>
@@ -1119,7 +1199,7 @@
       </div>
     </div>
     <div class="core">
-      <span class="chip glass"><i></i>לא עוד באנדל של עוקבים. באנדל של קונים.</span>
+      <span class="chip glass">השיטה של אננס. נבחנה ביותר מ-1,000 עסקים.</span>
       <span class="script">פסיכולוגיה של הצרכן</span>
       <h1 class="title"><span class="tl">איך לגרום ללקוח שלכם</span>למכור לעצמו, <span class="hot">עוד לפני שיחת המכירה?</span></h1>
     </div>
@@ -1131,16 +1211,19 @@
     </div>
     <div class="core2">
       <p class="lead">הבאנדל שילמד אתכם להשתמש בפסיכולוגיה של הצרכן כדי <strong>לשנות אמונות, לפרק התנגדויות ולבנות רצון לקנות,</strong> כבר בשלב שבו הלקוח צורך את התוכן שלכם.</p>
-      <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>כן! תהפכו את עולמי</span><span class="ab-btn__c"><svg><use href="#arrow"/></svg></span></a>
-      <div class="fomo2" data-sale>
-        <div class="f-head"><span class="live"></span>מחיר השקה פסיכי · 48 שעות בלבד</div>
-        <div class="f-deal"><b>יותר מ-50% הנחה</b><span>כולל 2 בונוסים: קורס "סטורי טו טל" וכלי ה-AI של אננס</span></div>
-        <div class="f-label" data-fomo-label>נסגר בעוד</div>
-        <div class="f-clock" data-fomo aria-label="הזמן שנשאר למחיר ההשקה">
-          <span><b>48</b><i>שעות</i></span><em>:</em><span><b>00</b><i>דקות</i></span><em>:</em><span class="secs"><b>00</b><i>שניות</i></span>
+      <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>אני רוצה ללמוד את זה</span><span class="ab-btn__c"><svg><use href="#arrow"/></svg></span></a>
+      <div class="fomo2 bf" data-sale>
+        <div class="bf-tape-w" aria-hidden="true"><div class="bf-tape"><span>BLACK NOVEMBER ✦ מחיר השקה ✦ 48 שעות ✦ BLACK NOVEMBER ✦ מחיר השקה ✦ 48 שעות ✦ BLACK NOVEMBER ✦ מחיר השקה ✦ 48 שעות ✦ </span><span>BLACK NOVEMBER ✦ מחיר השקה ✦ 48 שעות ✦ BLACK NOVEMBER ✦ מחיר השקה ✦ 48 שעות ✦ BLACK NOVEMBER ✦ מחיר השקה ✦ 48 שעות ✦ </span></div></div>
+        <div class="bf-in">
+          <div class="bf-price"><s class="bf-was">950 ₪</s><span class="bf-now"><span data-amount>450</span><small>₪</small></span><span class="bf-save">חוסכים 500 ₪</span></div>
+          <p class="bf-gift">ועוד <b>2 בונוסים במתנה:</b> קורס "סטורי טו טל" וכלי ה-AI של אננס</p>
+          <div class="f-label" data-fomo-label>המחיר הזה נעלם בעוד</div>
+          <div class="f-clock" data-fomo aria-label="הזמן שנשאר למחיר ההשקה">
+            <span><b>48</b><i>שעות</i></span><em>:</em><span><b>00</b><i>דקות</i></span><em>:</em><span class="secs"><b>00</b><i>שניות</i></span>
+          </div>
+          <div class="f-bar" aria-hidden="true"><i data-fomo-bar></i></div>
+          <p class="f-never">בעוד 48 שעות, אותו באנדל בדיוק יעלה 950 ₪. <b>ההבדל היחיד: מתי לחצתם.</b></p>
         </div>
-        <div class="f-bar" aria-hidden="true"><i data-fomo-bar></i></div>
-        <p class="f-never">אחרי זה המחיר עולה ל-950 ₪. <b>והוא לא יחזור. אף פעם.</b></p>
       </div>
     </div>
   </div>
@@ -1273,7 +1356,7 @@
       <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="ההודעה הקודמת"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="ההודעה הבאה"><svg class="ic"><use href="#arrow"/></svg></button></div>
     </div>
     <div class="stack center reveal">
-      <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>כן! תהפכו את עולמי</span><span class="ab-btn__c"><svg ><use href="#arrow"/></svg></span></a>
+      <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>גם אני רוצה הודעה כזאת</span><span class="ab-btn__c"><svg ><use href="#arrow"/></svg></span></a>
       <p class="fine">התוצאות של כל אחת תלויות בעבודה שלה. אלה הודעות שקיבלנו, כמו שהן.</p>
     </div>
   </div>
@@ -1299,24 +1382,20 @@
     </div>
     <p class="flow-detail" data-detail></p>
 
+    <!-- BONUSES: two gifts, one section -->
+    <div class="gifts-head stack center reveal" id="bonuses">
+      <span class="script">ועל הדרך</span>
+      <h2 class="title">2 מתנות. <span class="hot">בלי שקל נוסף.</span></h2>
+      <div class="gift-pills"><a href="#ai-tool"><b>מתנה 1</b>כלי ה-AI של אננס</a><a href="#story-gift"><b>מתנה 2</b>קורס "סטורי טו טל"</a></div>
+    </div>
+
     <!-- AI tool demo: the real /series tool, in its own ANANAS OS look, on a loop -->
     <div class="ai-demo" id="ai-tool">
       <div class="ai-copy reveal">
-        <span class="tag"><svg><use href="#spark"/></svg>במתנה · כלי AI</span>
+        <span class="tag"><svg><use href="#spark"/></svg>מתנה 1 מתוך 2 · כלי AI</span>
         <span class="script">לא עוד צ'אט.</span>
         <h3 class="title sm">כלי שחושב כמונו. <span class="hot">בשיטה של אננס.</span></h3>
         <p class="lead">צ'אט רגיל כותב לכם תוכן. המפצחת של אננס <strong>מפצחת אתכם:</strong> היא שואלת את השאלות שאנחנו שואלות בפגישת פיצוח, ומחזירה סדרת סושיאל ו-6–10 סרטוני עומק, בדיוק לפי השיטה שעבדנו בה עם יותר מאלף עסקים.</p>
-        <div class="vs-chat" aria-label="מה עונה צ'אט רגיל">
-          <span class="vs-k">צ'אט רגיל</span>
-          <p class="u">תכתוב לי רעיון לסדרה על פילאטיס</p>
-          <p class="b">5 טיפים לפילאטיס בבית! 1. נשמו עמוק 2. התחילו בקטן 3. ...</p>
-          <span class="stamp">כללי. כמו של כולם.</span>
-        </div>
-        <ol class="ai-steps">
-          <li><button type="button" data-goto="q"><b>1</b><span><strong>25 שאלות עליכם</strong>מי אתם, מה קורה אצלכם עכשיו, ומה מאחורי הקלעים</span></button></li>
-          <li><button type="button" data-goto="run"><b>2</b><span><strong>פיצוח בשיטה של אננס</strong>כל שלב בשיטה, אחד אחרי השני, בערך 2–3 דקות</span></button></li>
-          <li><button type="button" data-goto="res"><b>3</b><span><strong>סדרה וסרטונים שמתאימים רק לכם</strong>קונספט, 3 פרקים עם הוקים, וסרטוני עומק מוכנים לצילום</span></button></li>
-        </ol>
       </div>
 
       <div class="ai-stage" data-ai-stage>
@@ -1391,13 +1470,8 @@
       </div>
     </div>
 
-    <div class="msgs" data-msgs aria-label="תוצאות אמיתיות של חשיפה">
-      <div class="msgs-head reveal"><span class="script">ומה קורה כשהתוכן בנוי נכון?</span><p>סרטונים ותוצאות של תלמידות ולקוחות. לחצו להגדלה.</p></div>
-      <div class="msgs-row" data-msgs-row><button type="button" class="msg bare" data-proof="assets/msg-exp-p6.png" aria-label="מור: חצי מיליון צפיות בסרטון, ההתחפשות שעלתה 4,700 ₪"><img src="assets/msg-exp-p6.png" alt="מור: חצי מיליון צפיות בסרטון, ההתחפשות שעלתה 4,700 ₪" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v4.png" aria-label="סרטון עם 67.9K לייקים ו-4,098 שמירות"><img src="assets/msg-exp-v4.png" alt="סרטון עם 67.9K לייקים ו-4,098 שמירות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p5.png" aria-label="סרטון עם 419K צפיות"><img src="assets/msg-exp-p5.png" alt="סרטון עם 419K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c2.png" aria-label="סרטון לפי הנוסחה של אננס: יותר מ-10 רכישות של הקורס הדיגיטלי, אורגני, תוך פחות מ-24 שעות"><img src="assets/msg-exp-c2.png" alt="סרטון לפי הנוסחה של אננס: יותר מ-10 רכישות של הקורס הדיגיטלי, אורגני, תוך פחות מ-24 שעות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p2.png" aria-label="סרטון עם 349K צפיות"><img src="assets/msg-exp-p2.png" alt="סרטון עם 349K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v6.png" aria-label="סרטון עם 22.8K לייקים"><img src="assets/msg-exp-v6.png" alt="סרטון עם 22.8K לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c1.png" aria-label="אביה: 29,866 צפיות בריל, ומאז ההודעה עלו כמעט 500 עוקבים"><img src="assets/msg-exp-c1.png" alt="אביה: 29,866 צפיות בריל, ומאז ההודעה עלו כמעט 500 עוקבים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p4.png" aria-label="סרטון עם 241.5K צפיות"><img src="assets/msg-exp-p4.png" alt="סרטון עם 241.5K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v7.png" aria-label="סרטון עם 5,405 לייקים"><img src="assets/msg-exp-v7.png" alt="סרטון עם 5,405 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p1.png" aria-label="סרטון עם 239K צפיות"><img src="assets/msg-exp-p1.png" alt="סרטון עם 239K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c3.png" aria-label="אור: הטרייל הראשון, 70 שיתופים בשעתיים"><img src="assets/msg-exp-c3.png" alt="אור: הטרייל הראשון, 70 שיתופים בשעתיים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v8.png" aria-label="סרטון עם 6,420 לייקים ו-1,475 שיתופים"><img src="assets/msg-exp-v8.png" alt="סרטון עם 6,420 לייקים ו-1,475 שיתופים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v5.png" aria-label="סרטון עם 1,503 לייקים"><img src="assets/msg-exp-v5.png" alt="סרטון עם 1,503 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v2.png" aria-label="סרטון עם 1,713 לייקים ו-320 שיתופים"><img src="assets/msg-exp-v2.png" alt="סרטון עם 1,713 לייקים ו-320 שיתופים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p3.png" aria-label="סרטון עם 185K צפיות"><img src="assets/msg-exp-p3.png" alt="סרטון עם 185K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v1.png" aria-label="סרטון עם 1,035 לייקים"><img src="assets/msg-exp-v1.png" alt="סרטון עם 1,035 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v3.png" aria-label="סרטון עם 954 לייקים"><img src="assets/msg-exp-v3.png" alt="סרטון עם 954 לייקים" loading="lazy"></button></div>
-      <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="הקודם"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="הבא"><svg class="ic"><use href="#arrow"/></svg></button></div>
-    </div>
 
-    <div class="story-bonus reveal">
+    <div class="story-bonus reveal" id="story-gift">
       <figure class="gf" data-gf aria-label="קורס סטורי טו טל: שיעורים על מכירות, השקות וחשיפה">
         <span class="gf-glow" aria-hidden="true"></span>
         <div class="gf-scene">
@@ -1418,7 +1492,7 @@
         
       </figure>
       <div class="stack">
-        <span class="tag"><svg><use href="#spark"/></svg>במתנה · קורס דיגיטלי</span>
+        <span class="tag"><svg><use href="#spark"/></svg>מתנה 2 מתוך 2 · קורס דיגיטלי</span>
         <h3 class="title sm">קורס "סטורי טו טל". <span class="hot">הסטורי שמוכר.</span></h3>
         <p class="lead">האלגוריתם של הסטורי, השקות, בילדאפ וקידומי מכירה. <strong>איך הסטורי מפסיק להיות "יומן" ומתחיל למכור.</strong></p>
       </div>
@@ -1428,6 +1502,12 @@
       <div class="msgs-head reveal"><span class="script">ומה קרה להן בסטורי?</span><p>הודעות אמיתיות מתלמידות. לחצו להגדלה.</p></div>
       <div class="msgs-row" data-msgs-row><button type="button" class="msg" data-proof="assets/msg-story-4.png" aria-label="גל: ההשקה עשתה יותר מחמש ספרות, 11,000 ₪ מסטורי"><img src="assets/msg-story-4.png" alt="גל: ההשקה עשתה יותר מחמש ספרות, 11,000 ₪ מסטורי" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-2.webp" aria-label="אילנית: 40 לידים מהשקה קטנה של מוצר אינטרנטי"><img src="assets/msg-story-2.webp" alt="אילנית: 40 לידים מהשקה קטנה של מוצר אינטרנטי" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-1.png" aria-label="אופיר: סולד אאוט על המכירה המוקדמת, מ-3,000 צפיות בסטורי"><img src="assets/msg-story-1.png" alt="אופיר: סולד אאוט על המכירה המוקדמת, מ-3,000 צפיות בסטורי" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-10.jpg" aria-label="סגרתי 4 מקומות תוך שעתיים, ויש לי עוד 17 לידים"><img src="assets/msg-story-10.jpg" alt="סגרתי 4 מקומות תוך שעתיים, ויש לי עוד 17 לידים" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-9.jpg" aria-label="תפארת: 4 לידים שנסגרו מהסטורי השבוע"><img src="assets/msg-story-9.jpg" alt="תפארת: 4 לידים שנסגרו מהסטורי השבוע" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-8.png" aria-label="אור: 2,400 צפיות בסטורי בשעתיים ועשרות מתעניינות"><img src="assets/msg-story-8.png" alt="אור: 2,400 צפיות בסטורי בשעתיים ועשרות מתעניינות" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-6.webp" aria-label="עדי: 4,599 צפיות בסטורי, יותר מפי 3"><img src="assets/msg-story-6.webp" alt="עדי: 4,599 צפיות בסטורי, יותר מפי 3" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-5.png" aria-label="הסטורי לא עלה על 700, ועכשיו 1,587 צפיות"><img src="assets/msg-story-5.png" alt="הסטורי לא עלה על 700, ועכשיו 1,587 צפיות" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-7.png" aria-label="הצפיות קפצו מאז שהתחלתי להשתמש בטכניקות מהשיעור"><img src="assets/msg-story-7.png" alt="הצפיות קפצו מאז שהתחלתי להשתמש בטכניקות מהשיעור" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-story-3.png" aria-label="צופיה, יוצרת תוכן 3 שנים: איך למכור ולייצר המרות רק בסטורי"><img src="assets/msg-story-3.png" alt="צופיה, יוצרת תוכן 3 שנים: איך למכור ולייצר המרות רק בסטורי" loading="lazy"></button></div>
       <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="ההודעה הקודמת"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="ההודעה הבאה"><svg class="ic"><use href="#arrow"/></svg></button></div>
+    </div>
+
+    <div class="msgs" data-msgs aria-label="תוצאות אמיתיות של חשיפה">
+      <div class="msgs-head reveal"><span class="script">ומה קורה כשהתוכן בנוי נכון?</span><p>סרטונים ותוצאות של תלמידות ולקוחות. לחצו להגדלה.</p></div>
+      <div class="msgs-row" data-msgs-row><button type="button" class="msg bare" data-proof="assets/msg-exp-p6.png" aria-label="מור: חצי מיליון צפיות בסרטון, ההתחפשות שעלתה 4,700 ₪"><img src="assets/msg-exp-p6.png" alt="מור: חצי מיליון צפיות בסרטון, ההתחפשות שעלתה 4,700 ₪" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v4.png" aria-label="סרטון עם 67.9K לייקים ו-4,098 שמירות"><img src="assets/msg-exp-v4.png" alt="סרטון עם 67.9K לייקים ו-4,098 שמירות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p5.png" aria-label="סרטון עם 419K צפיות"><img src="assets/msg-exp-p5.png" alt="סרטון עם 419K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c2.png" aria-label="סרטון לפי הנוסחה של אננס: יותר מ-10 רכישות של הקורס הדיגיטלי, אורגני, תוך פחות מ-24 שעות"><img src="assets/msg-exp-c2.png" alt="סרטון לפי הנוסחה של אננס: יותר מ-10 רכישות של הקורס הדיגיטלי, אורגני, תוך פחות מ-24 שעות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p2.png" aria-label="סרטון עם 349K צפיות"><img src="assets/msg-exp-p2.png" alt="סרטון עם 349K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v6.png" aria-label="סרטון עם 22.8K לייקים"><img src="assets/msg-exp-v6.png" alt="סרטון עם 22.8K לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c1.png" aria-label="אביה: 29,866 צפיות בריל, ומאז ההודעה עלו כמעט 500 עוקבים"><img src="assets/msg-exp-c1.png" alt="אביה: 29,866 צפיות בריל, ומאז ההודעה עלו כמעט 500 עוקבים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p4.png" aria-label="סרטון עם 241.5K צפיות"><img src="assets/msg-exp-p4.png" alt="סרטון עם 241.5K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v7.png" aria-label="סרטון עם 5,405 לייקים"><img src="assets/msg-exp-v7.png" alt="סרטון עם 5,405 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p1.png" aria-label="סרטון עם 239K צפיות"><img src="assets/msg-exp-p1.png" alt="סרטון עם 239K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-c3.png" aria-label="אור: הטרייל הראשון, 70 שיתופים בשעתיים"><img src="assets/msg-exp-c3.png" alt="אור: הטרייל הראשון, 70 שיתופים בשעתיים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v8.png" aria-label="סרטון עם 6,420 לייקים ו-1,475 שיתופים"><img src="assets/msg-exp-v8.png" alt="סרטון עם 6,420 לייקים ו-1,475 שיתופים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v5.png" aria-label="סרטון עם 1,503 לייקים"><img src="assets/msg-exp-v5.png" alt="סרטון עם 1,503 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v2.png" aria-label="סרטון עם 1,713 לייקים ו-320 שיתופים"><img src="assets/msg-exp-v2.png" alt="סרטון עם 1,713 לייקים ו-320 שיתופים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-p3.png" aria-label="סרטון עם 185K צפיות"><img src="assets/msg-exp-p3.png" alt="סרטון עם 185K צפיות" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v1.png" aria-label="סרטון עם 1,035 לייקים"><img src="assets/msg-exp-v1.png" alt="סרטון עם 1,035 לייקים" loading="lazy"></button><button type="button" class="msg bare" data-proof="assets/msg-exp-v3.png" aria-label="סרטון עם 954 לייקים"><img src="assets/msg-exp-v3.png" alt="סרטון עם 954 לייקים" loading="lazy"></button></div>
+      <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="הקודם"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="הבא"><svg class="ic"><use href="#arrow"/></svg></button></div>
     </div>
   </div>
 </section>
@@ -1454,13 +1534,12 @@
 <section class="sec tight about blobs">
   <div class="wrap about-grid">
     <figure class="photo team reveal">
-      <span class="team-word" aria-hidden="true">ANANAS</span>
       <img src="assets/team.png" alt="נופר ונוי, ANANAS" width="800" height="771" loading="lazy">
       <div class="float glass auth">
         <div class="auth-row">
           <div><b dir="ltr">+1,000</b><span>עסקים שעבדנו איתם</span></div>
           <div><b dir="ltr">+600</b><span>תלמידות באקדמיה</span></div>
-          <div><b dir="ltr">+24,000</b><span>אנשים בקהילה</span></div>
+          <div><b dir="ltr">+24K</b><span>אנשים בקהילה</span></div>
         </div>
         <p class="auth-line">והכל בשיטת העבודה שאנחנו מלמדות בבאנדל.</p>
       </div>
@@ -1629,7 +1708,7 @@
 
     <div class="stack center reveal">
       <p class="lead">זאת השיטה. <strong>בבאנדל אתם מקבלים את החלק שלה שגורם ללקוח למכור לעצמו.</strong></p>
-      <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>כן! תהפכו את עולמי</span><span class="ab-btn__c"><svg><use href="#arrow"/></svg></span></a>
+      <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>אני רוצה את השיטה הזאת</span><span class="ab-btn__c"><svg><use href="#arrow"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -1639,7 +1718,7 @@
   <div class="wrap stack center reveal">
     <span class="script">הלקוח הבא שלכם כבר צופה.</span>
     <h2>תנו לתוכן <span class="hot">לסגור את המכירה.</span></h2>
-    <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>כן! תהפכו את עולמי</span><span class="ab-btn__c"><svg><use href="#arrow"/></svg></span></a>
+    <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>מצטרפים, לפני שהמחיר עולה</span><span class="ab-btn__c"><svg><use href="#arrow"/></svg></span></a>
     <p class="fine" data-sale>450 ₪ ל-48 שעות בלבד. אחר כך 950 ₪, וזה לא חוזר.</p>
   </div>
 </section>
@@ -1998,7 +2077,7 @@ document.documentElement.classList.add("js");
   });
   const bgs = [...bg.children];
   let cur = 0, timer = null, started = 0;
-  const DUR = 5200;
+  const DUR = 3600;
   function layout() {
     const narrow = innerWidth < 760;
     cards.forEach((c, i) => {
