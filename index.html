@@ -1006,6 +1006,44 @@
     .case-tab span { font-size: 10.5px; white-space: nowrap; }
     .case-tab b { font-size: 14px; }
   }
+
+  /* ===== cases v2: a light editorial insert, so the stories read as their own chapter ===== */
+  .cases { --ink: #2A0F0B; --ink-2: #5B3A33; --ink-3: #8A6A60; --label: #E8433F;
+           margin: 40px clamp(10px, 2vw, 24px); border-radius: clamp(32px, 5vw, 56px); color: var(--ink);
+           background: radial-gradient(60% 50% at 85% 0%, rgba(255,255,255,.9), transparent 70%), linear-gradient(170deg, #FFF3EC 0%, #FFE1DA 45%, #FCCBF0 100%);
+           box-shadow: 0 40px 80px -40px rgba(0,0,0,.9); }
+  .cases .script { color: #E8433F; }
+  .cases .hot { background-image: linear-gradient(270deg, #FF8A6B 0%, #FF5A57 50%, #D9302C 100%); }
+  .cases .title, .cases h3 { color: var(--ink); }
+  .cases .lead { color: var(--ink-2); }
+  .cases .case-tab { background: #fff; border: 1px solid rgba(42,15,11,.08); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 0 10px 24px -14px rgba(120,30,20,.4); }
+  .cases .case-tab span { color: var(--ink-3); } .cases .case-tab b { color: var(--ink); }
+  .cases .case-tab[aria-selected="true"] { background: var(--btn); } .cases .case-tab[aria-selected="true"] b, .cases .case-tab[aria-selected="true"] span { color: #fff; }
+  .cases .case { background: rgba(255,255,255,.72); border: 1px solid rgba(255,255,255,.9); backdrop-filter: none; -webkit-backdrop-filter: none;
+                 box-shadow: 0 30px 60px -30px rgba(140,40,30,.45); }
+  .cases .case-tag { background: rgba(255,90,87,.1); border-color: rgba(255,90,87,.35); color: #D9302C; }
+  .cases .cs-steps li { background: #fff; color: var(--ink-2); box-shadow: 0 8px 20px -14px rgba(120,30,20,.35); }
+  .cases .cs-steps em { color: #E8433F; }
+  .cases .cs-steps li:last-child { background: var(--btn); color: #fff; } .cases .cs-steps li:last-child em { color: #fff; opacity: .85; }
+  .cases .cs-steps li:last-child q { color: #fff; }
+  .cases .cs-steps li:not(:last-child)::after { content: "↓"; position: absolute; left: 50%; bottom: -15px; transform: translateX(-50%); z-index: 1; font-weight: 900; color: #E8433F; font-size: 16px;
+                 width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%; background: #FFE1DA; }
+  .cases .cs-steps { gap: 14px; }
+  .cases .case-see { color: var(--ink); }
+  .cases .seats i { background: rgba(42,15,11,.06); border-color: rgba(42,15,11,.12); }
+  .cases .otl i, .cases .otl i small { color: rgba(255,255,255,.55); } .cases .otl i.on, .cases .otl i.on small { color: #fff; }
+  .cases .otl i::before { background: rgba(255,255,255,.35); } .cases .otl i.on::before { background: #fff; box-shadow: 0 0 10px #fff; }
+  .cases .c-bg { stroke: rgba(42,15,11,.08); }
+  .cases .clock24 span { color: var(--ink-3); }
+  .cases .deals i { background: rgba(42,15,11,.05); border-color: rgba(42,15,11,.1); color: var(--ink); }
+  .cases .deals i.on { color: #fff; }
+  .cases .case-pic img { -webkit-mask: none; mask: none; filter: drop-shadow(0 24px 30px rgba(120,30,20,.35)); }
+  @media (min-width: 860px) {
+    .cases .cs-steps { grid-template-columns: 1fr 1fr 1.25fr; align-items: stretch; }
+    .cases .cs-steps li:not(:last-child)::after { content: "←"; left: -18px; bottom: auto; top: 50%; transform: translateY(-50%); }
+  }
+  .cases .seats i.on, .cases .deals i.on { background: var(--btn); border-color: transparent; color: #fff; }
+  @media (max-width: 520px) { .deals { flex-wrap: nowrap; gap: 7px; } .deals i { width: 50px; height: 50px; font-size: 19px; } .deals i.last { padding: 0 10px; } }
 </style>
 </head>
 <body>
@@ -1482,7 +1520,7 @@
 </section>
 
 <!-- ================= CASES: 3 client stories, start to money ================= -->
-<section class="sec cases blobs" id="cases">
+<section class="sec cases" id="cases">
   <div class="wrap stack">
     <div class="stack center reveal">
       <span class="script">3 סיפורים, מההתחלה ועד הכסף</span>
@@ -1867,7 +1905,7 @@ document.documentElement.classList.add("js");
     };
     tabs.forEach(t => t.addEventListener("click", () => show(t.dataset.caseTab)));
     let seen = false;
-    new IntersectionObserver(([e], o) => { if (e.isIntersecting && !seen) { seen = true; play("or"); o.disconnect(); } }, { threshold: .35 }).observe(cases[0]);
+    new IntersectionObserver(([e], o) => { if (e.isIntersecting && !seen) { seen = true; play("or"); o.disconnect(); } }, { threshold: .5 }).observe(document.querySelector("[data-seats]"));
   })();
 
   // proof: open a message in full; numbers count up once in view
