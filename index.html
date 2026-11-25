@@ -1064,6 +1064,13 @@
   .case-more.open .cs-steps li:nth-child(3) { transition-delay: .75s; }
   .case-more-in > .cs-steps { padding-top: 4px; }
   @media (prefers-reduced-motion: reduce) { .case-more, .case-more .cs-steps li { transition: none; } }
+  .cases .case-open { width: min(560px, 100%); margin-inline: auto; justify-self: center; box-sizing: border-box; font-size: 17px; padding: 18px 22px; }
+  .cases .case-more.open .cs-steps li { opacity: 1; transform: none; }
+  .cases .case-more > .case-more-in { gap: 0; }
+  .cases .case-more > .case-more-in { padding: 0 2px; transition: padding .6s; }
+  .cases .case-more.open > .case-more-in { padding: 26px 2px 10px; }
+  .cases .case-more:not(.open) > .case-more-in { visibility: hidden; transition: padding .6s, visibility 0s .6s; }
+  .cases .case-more.open > .case-more-in { overflow: visible; }
 </style>
 </head>
 <body>
@@ -1548,6 +1555,8 @@
       <p class="lead">שלוש לקוחות ליווי שלנו, שעבדו באותה שיטה שאנחנו מלמדות בבאנדל. <strong>מה היה, מה עשינו, ומה יצא.</strong></p>
     </div>
 
+    <button type="button" class="case-open" data-cases-btn aria-expanded="false" aria-controls="cases-all">רוצים לראות פירוק של תהליך איתנו? <b>לחצו כאן</b><svg class="ic" aria-hidden="true"><use href="#arrow"/></svg></button>
+    <div class="case-more" id="cases-all" data-cases-more><div class="case-more-in">
     <div class="case-tabs" role="tablist" aria-label="בחירת סיפור">
       <button type="button" role="tab" class="case-tab" data-case-tab="or" aria-selected="true"><img src="assets/case-or.webp" alt="" width="518" height="579" loading="lazy"><span><b>אור</b>20/20</span></button>
       <button type="button" role="tab" class="case-tab" data-case-tab="avishag" aria-selected="false"><img src="assets/case-avishag.webp" alt="" width="429" height="599" loading="lazy"><span><b>אבישג</b>6 ב-24 שעות</span></button>
@@ -1562,8 +1571,6 @@
         <h3>אור יוסיפוביץ</h3>
         <div class="case-big"><b class="hot" data-seats-n>0/20</b><span>כיתה מלאה, כבר במחזור הראשון</span></div>
         <div class="seats" data-seats aria-hidden="true"></div>
-        <button type="button" class="case-open" data-more-btn aria-expanded="false">רוצים לראות פירוק של התהליך איתנו? <b>לחצו כאן</b><svg class="ic" aria-hidden="true"><use href="#arrow"/></svg></button>
-        <div class="case-more" data-more><div class="case-more-in">
         <ol class="cs-steps">
           <li><em>מה היה</em>אור עבדה אצלנו שנתיים, עם עשרות עסקים. היא רצתה להפוך את כל הידע הזה לקורס פרונטלי ופרקטי.</li>
           <li><em>מה עשינו</em>פיצחנו מה הייחודי שהיא מביאה, פירקנו את הידע לשיעורים, בנינו תוכנית למידה ופרקטיקה, ומשם תוכנית שיווק עם השקה.</li>
@@ -1572,7 +1579,6 @@
           </li>
         </ol>
         <button type="button" class="case-see" data-proof="assets/case-or-chat.webp" aria-label="ההודעות של אור מיום ההשקה ועד 14/20">לראות את ההודעות שלה</button>
-        </div></div>
       </div>
     </article>
 
@@ -1584,15 +1590,12 @@
         <h3>אבישג משעול</h3>
         <div class="case-big"><b class="hot">6 ליווים</b><span>תוך 24 שעות מיום ההשקה</span></div>
         <div class="clock24" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="c-bg"/><circle cx="60" cy="60" r="52" class="c-fg" pathLength="1"/></svg><div><b data-clock24>0</b><span>ליווים</span></div></div>
-        <button type="button" class="case-open" data-more-btn aria-expanded="false">רוצים לראות פירוק של התהליך איתנו? <b>לחצו כאן</b><svg class="ic" aria-hidden="true"><use href="#arrow"/></svg></button>
-        <div class="case-more" data-more><div class="case-more-in">
         <ol class="cs-steps">
           <li><em>מה היה</em>אבישג התפוצצה ברשתות בזכות הסיפורים שלה, אבל לא הצליחה לחבר את הכישרון הזה לשירות ולמודל עסקי שמכניס כסף.</li>
           <li><em>מה עשינו</em>הבנו מה היא רוצה לתת ולאיזה קהל, ותרגמנו את זה לתוכנית ליווי פרקטית. ואז בנינו איתה השקה.</li>
           <li><em>מה יצא</em>6 ליווים תוך 24 שעות. ובמילים שלה: <q>וזה מעל ומעבר למה שציפיתי</q></li>
         </ol>
         <button type="button" class="case-see" data-proof="assets/proof-avishag.jpg" aria-label="ההודעה מאבישג: סגרתי 6 ליווים תוך 24 שעות">לראות את ההודעה שלה</button>
-        </div></div>
       </div>
     </article>
 
@@ -1604,17 +1607,16 @@
         <h3>אביה רזניקוב</h3>
         <div class="case-big"><b class="hot">4 לקוחות</b><span>בעסקה ממוצעת של 10,000 ₪ ומעלה, תוך פחות מחודשיים</span></div>
         <div class="deals" aria-hidden="true"><i>1</i><i>2</i><i>3</i><i class="last">4<small dir="ltr">14,396 ₪</small></i></div>
-        <button type="button" class="case-open" data-more-btn aria-expanded="false">רוצים לראות פירוק של התהליך איתנו? <b>לחצו כאן</b><svg class="ic" aria-hidden="true"><use href="#arrow"/></svg></button>
-        <div class="case-more" data-more><div class="case-more-in">
         <ol class="cs-steps">
           <li><em>מה היה</em>אחרי שעזרנו לאביה להקים סוכנות סושיאל, היא הייתה מוכנה לשלב הבא: תוכנית ליווי לבעלות עסקים.</li>
           <li><em>מה עשינו</em>הגדרנו את הקהל, בנינו פרוטוקול לכל פגישה בליווי ופלו שמוביל לתוצאות. ואז תוכנית שיווק.</li>
           <li><em>מה יצא</em>4 לקוחות תוך פחות מחודשיים. הרביעית נסגרה ב-14,396 ₪.</li>
         </ol>
         <button type="button" class="case-see" data-proof="assets/proof-aviya.png" aria-label="ההודעה מאביה: התראת תשלום על 14,396 ₪">לראות את ההודעה שלה</button>
-        </div></div>
       </div>
     </article>
+
+    </div></div>
 
     <div class="stack center reveal">
       <p class="lead">זאת השיטה. <strong>בבאנדל אתם מקבלים את החלק שלה שגורם ללקוח למכור לעצמו.</strong></p>
@@ -1937,18 +1939,19 @@ document.documentElement.classList.add("js");
     new IntersectionObserver(([e], o) => { if (e.isIntersecting && !seen) { seen = true; play("or"); o.disconnect(); } }, { threshold: .5 }).observe(document.querySelector("[data-seats]"));
   })();
 
-  // cases: open / close the process breakdown
-  document.querySelectorAll("[data-more-btn]").forEach(btn => {
-    const box = btn.nextElementSibling, b = btn.querySelector("b");
+  // cases: the whole stories area opens from one button
+  (() => {
+    const btn = document.querySelector("[data-cases-btn]"), box = document.querySelector("[data-cases-more]");
+    if (!btn) return;
+    const label = btn.firstChild, b = btn.querySelector("b");
     btn.addEventListener("click", () => {
       const open = !box.classList.contains("open");
       box.classList.toggle("open", open);
       btn.setAttribute("aria-expanded", open);
-      btn.firstChild.textContent = open ? "סגירת הפירוק " : "רוצים לראות פירוק של התהליך איתנו? ";
+      label.textContent = open ? "סגירת הסיפורים " : "רוצים לראות פירוק של תהליך איתנו? ";
       b.textContent = open ? "" : "לחצו כאן";
-      if (open && btn.closest('[data-case="or"]')) { const steps = btn.closest("[data-case]").querySelectorAll(".otl i.on"); if (!steps.length) document.querySelector('[data-case-tab="or"]').click(); }
     });
-  });
+  })();
 
   // proof: open a message in full; numbers count up once in view
   (() => {
