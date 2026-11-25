@@ -941,6 +941,71 @@
   /* exposure row: everything frameless and the same height, so phones, video cards and chats read as one set */
   .msg.bare { width: auto; }
   .msg.bare img { height: clamp(360px, 36vw, 420px); width: auto; max-width: none; max-height: none; object-fit: contain; border-radius: 0; }
+
+  /* ===== cases: 3 client stories with a switcher ===== */
+  .case-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .case-tab { all: unset; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 6px 16px 6px 8px; border-radius: 99px; background: var(--glass); border: 1px solid var(--glass-edge);
+              backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: .3s; }
+  .case-tab img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top; background: rgba(255,90,87,.35); }
+  .case-tab span { display: grid; font-size: 12.5px; font-weight: 700; color: var(--ink-2); line-height: 1.15; }
+  .case-tab b { font-size: 16px; color: var(--ink); }
+  .case-tab[aria-selected="true"] { background: var(--btn); border-color: transparent; box-shadow: 0 14px 30px -12px rgba(255,90,87,.9); }
+  .case-tab[aria-selected="true"] span { color: #fff; }
+  .case-tab:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; }
+  .case { display: grid; gap: 10px; padding: 0 20px 26px; border-radius: 34px; width: min(980px, 100%); margin: 50px auto 0; animation: caseIn .5s cubic-bezier(.2,.9,.3,1); }
+  @keyframes caseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .case-pic { margin: -60px auto 0; width: min(260px, 70%); }
+  .case-pic img { width: 100%; height: auto; filter: drop-shadow(0 24px 30px rgba(0,0,0,.55));
+                  -webkit-mask: linear-gradient(180deg, #000 78%, transparent 100%); mask: linear-gradient(180deg, #000 78%, transparent 100%); }
+  .case-body { display: grid; gap: 14px; }
+  .case-tag { justify-self: start; font-size: 12.5px; font-weight: 800; padding: 5px 12px; border-radius: 99px; background: rgba(255,90,87,.16); border: 1px solid rgba(255,90,87,.45); color: var(--label); }
+  .case h3 { font-size: clamp(26px, 3vw, 34px); font-weight: 900; }
+  .case-big { display: grid; gap: 4px; }
+  .case-big b { font-size: clamp(46px, 7vw, 76px); font-weight: 900; line-height: .95; justify-self: start; }
+  .case-big span { font-size: 16px; font-weight: 700; color: var(--ink-2); }
+  .cs-steps { display: grid; gap: 10px; counter-reset: st; }
+  .cs-steps li { position: relative; padding: 12px 14px; border-radius: 18px; background: rgba(0,0,0,.2); font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+  .cs-steps em { display: block; font-style: normal; font-weight: 900; color: var(--label); font-size: 13px; letter-spacing: .02em; margin-bottom: 2px; }
+  .cs-steps q { color: var(--ink); font-weight: 800; }
+  .case-see { all: unset; cursor: zoom-in; justify-self: start; font-weight: 800; font-size: 14.5px; color: var(--ink); border-bottom: 1.5px solid var(--coral); padding-bottom: 2px; }
+  .case-see:focus-visible { outline: 2px solid var(--coral); outline-offset: 4px; }
+  @media (min-width: 860px) {
+    .case { grid-template-columns: 300px 1fr; gap: 34px; padding: 30px 34px 30px 30px; align-items: start; }
+    .case-pic { margin: -70px 0 0; width: 100%; position: sticky; top: 100px; }
+  }
+  /* Or: 20 seats filling up */
+  .seats { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; width: min(360px, 100%); }
+  .seats i { aspect-ratio: 1; border-radius: 50%; background: rgba(255,246,240,.1); border: 1px solid rgba(255,246,240,.18); transition: .35s cubic-bezier(.2,1.4,.4,1); }
+  .seats i.on { background: var(--btn); border-color: transparent; transform: scale(1.08); box-shadow: 0 0 12px rgba(255,90,87,.6); }
+  .otl { display: grid; gap: 8px; margin-top: 4px; }
+  .otl i { font-style: normal; font-weight: 900; color: var(--ink-3); padding-inline-start: 18px; position: relative; transition: color .3s; }
+  .otl i::before { content: ""; position: absolute; right: 0; top: .45em; width: 9px; height: 9px; border-radius: 50%; background: rgba(255,246,240,.2); transition: .3s; }
+  .otl i small { display: block; font-weight: 700; font-size: 13.5px; color: var(--ink-3); }
+  .otl i.on { color: var(--ink); } .otl i.on::before { background: var(--coral); box-shadow: 0 0 10px var(--coral); } .otl i.on small { color: var(--ink-2); }
+  /* Avishag: 24h ring */
+  .clock24 { position: relative; width: 120px; height: 120px; }
+  .clock24 svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .clock24 circle { fill: none; stroke-width: 9; }
+  .c-bg { stroke: rgba(255,246,240,.1); }
+  .c-fg { stroke: var(--coral); stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.6s cubic-bezier(.4,0,.2,1); filter: drop-shadow(0 0 6px rgba(255,90,87,.7)); }
+  .clock24.on .c-fg { stroke-dashoffset: 0; }
+  .clock24 > div { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; }
+  .clock24 b { font-size: 40px; font-weight: 900; line-height: 1; }
+  .clock24 span { font-size: 12px; font-weight: 700; color: var(--ink-2); }
+  /* Aviya: 4 deals */
+  .deals { display: flex; gap: 10px; flex-wrap: wrap; }
+  .deals i { font-style: normal; width: 58px; height: 58px; border-radius: 16px; display: grid; place-content: center; text-align: center; font-weight: 900; font-size: 22px;
+             background: rgba(255,246,240,.08); border: 1px solid rgba(255,246,240,.2); opacity: .25; transform: translateY(8px); transition: .45s cubic-bezier(.2,1.4,.4,1); }
+  .deals i.last { width: auto; padding: 0 14px; }
+  .deals i small { font-size: 11px; font-weight: 800; color: #fff; }
+  .deals i.on { opacity: 1; transform: none; background: var(--btn); border-color: transparent; box-shadow: 0 12px 24px -10px rgba(255,90,87,.9); }
+  @media (max-width: 520px) {
+    .case-tabs { flex-wrap: nowrap; gap: 6px; }
+    .case-tab { gap: 6px; padding: 4px 10px 4px 4px; min-width: 0; }
+    .case-tab img { width: 34px; height: 34px; }
+    .case-tab span { font-size: 10.5px; white-space: nowrap; }
+    .case-tab b { font-size: 14px; }
+  }
 </style>
 </head>
 <body>
@@ -1416,6 +1481,81 @@
   </div>
 </section>
 
+<!-- ================= CASES: 3 client stories, start to money ================= -->
+<section class="sec cases blobs" id="cases">
+  <div class="wrap stack">
+    <div class="stack center reveal">
+      <span class="script">3 סיפורים, מההתחלה ועד הכסף</span>
+      <h2 class="title">ככה זה נראה <span class="hot">מבפנים.</span></h2>
+      <p class="lead">שלוש לקוחות ליווי שלנו, שעבדו באותה שיטה שאנחנו מלמדות בבאנדל. <strong>מה היה, מה עשינו, ומה יצא.</strong></p>
+    </div>
+
+    <div class="case-tabs" role="tablist" aria-label="בחירת סיפור">
+      <button type="button" role="tab" class="case-tab" data-case-tab="or" aria-selected="true"><img src="assets/case-or.webp" alt="" width="518" height="579" loading="lazy"><span><b>אור</b>20/20</span></button>
+      <button type="button" role="tab" class="case-tab" data-case-tab="avishag" aria-selected="false"><img src="assets/case-avishag.webp" alt="" width="429" height="599" loading="lazy"><span><b>אבישג</b>6 ב-24 שעות</span></button>
+      <button type="button" role="tab" class="case-tab" data-case-tab="aviya" aria-selected="false"><img src="assets/case-aviya.webp" alt="" width="429" height="542" loading="lazy"><span><b>אביה</b>4 × 10K+</span></button>
+    </div>
+
+    <!-- Or -->
+    <article class="case glass" data-case="or" role="tabpanel">
+      <figure class="case-pic"><img src="assets/case-or.webp" alt="אור יוסיפוביץ" width="518" height="579" loading="lazy"></figure>
+      <div class="case-body">
+        <span class="case-tag">מעבודה עם עסקים, לקורס פרונטלי</span>
+        <h3>אור יוסיפוביץ</h3>
+        <div class="case-big"><b class="hot" data-seats-n>0/20</b><span>כיתה מלאה, כבר במחזור הראשון</span></div>
+        <div class="seats" data-seats aria-hidden="true"></div>
+        <ol class="cs-steps">
+          <li><em>מה היה</em>אור עבדה אצלנו שנתיים, עם עשרות עסקים. היא רצתה להפוך את כל הידע הזה לקורס פרונטלי ופרקטי.</li>
+          <li><em>מה עשינו</em>פיצחנו מה הייחודי שהיא מביאה, פירקנו את הידע לשיעורים, בנינו תוכנית למידה ופרקטיקה, ומשם תוכנית שיווק עם השקה.</li>
+          <li><em>מה יצא</em>
+            <span class="otl"><i data-at="2">יום ההשקה<small>2,400 צפיות בסטורי בשעתיים, ועשרות מתעניינות</small></i><i data-at="8">אחרי יומיים<small>8 בפנים</small></i><i data-at="14">אחרי 5 ימים<small>14 מתוך 20</small></i><i data-at="20">סוף ההרשמה<small>20 מתוך 20</small></i></span>
+          </li>
+        </ol>
+        <button type="button" class="case-see" data-proof="assets/case-or-chat.webp" aria-label="ההודעות של אור מיום ההשקה ועד 14/20">לראות את ההודעות שלה</button>
+      </div>
+    </article>
+
+    <!-- Avishag -->
+    <article class="case glass" data-case="avishag" role="tabpanel" hidden>
+      <figure class="case-pic"><img src="assets/case-avishag.webp" alt="אבישג משעול" width="429" height="599" loading="lazy"></figure>
+      <div class="case-body">
+        <span class="case-tag">מסטוריטלינג, לתוכנית ליווי</span>
+        <h3>אבישג משעול</h3>
+        <div class="case-big"><b class="hot">6 ליווים</b><span>תוך 24 שעות מיום ההשקה</span></div>
+        <div class="clock24" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="c-bg"/><circle cx="60" cy="60" r="52" class="c-fg" pathLength="1"/></svg><div><b data-clock24>0</b><span>ליווים</span></div></div>
+        <ol class="cs-steps">
+          <li><em>מה היה</em>אבישג התפוצצה ברשתות בזכות הסיפורים שלה, אבל לא הצליחה לחבר את הכישרון הזה לשירות ולמודל עסקי שמכניס כסף.</li>
+          <li><em>מה עשינו</em>הבנו מה היא רוצה לתת ולאיזה קהל, ותרגמנו את זה לתוכנית ליווי פרקטית. ואז בנינו איתה השקה.</li>
+          <li><em>מה יצא</em>6 ליווים תוך 24 שעות. ובמילים שלה: <q>וזה מעל ומעבר למה שציפיתי</q></li>
+        </ol>
+        <button type="button" class="case-see" data-proof="assets/proof-avishag.jpg" aria-label="ההודעה מאבישג: סגרתי 6 ליווים תוך 24 שעות">לראות את ההודעה שלה</button>
+      </div>
+    </article>
+
+    <!-- Aviya -->
+    <article class="case glass" data-case="aviya" role="tabpanel" hidden>
+      <figure class="case-pic"><img src="assets/case-aviya.webp" alt="אביה רזניקוב" width="429" height="542" loading="lazy"></figure>
+      <div class="case-body">
+        <span class="case-tag">מסוכנות סושיאל, לתוכנית ליווי</span>
+        <h3>אביה רזניקוב</h3>
+        <div class="case-big"><b class="hot">4 לקוחות</b><span>בעסקה ממוצעת של 10,000 ₪ ומעלה, תוך פחות מחודשיים</span></div>
+        <div class="deals" aria-hidden="true"><i>1</i><i>2</i><i>3</i><i class="last">4<small dir="ltr">14,396 ₪</small></i></div>
+        <ol class="cs-steps">
+          <li><em>מה היה</em>אחרי שעזרנו לאביה להקים סוכנות סושיאל, היא הייתה מוכנה לשלב הבא: תוכנית ליווי לבעלות עסקים.</li>
+          <li><em>מה עשינו</em>הגדרנו את הקהל, בנינו פרוטוקול לכל פגישה בליווי ופלו שמוביל לתוצאות. ואז תוכנית שיווק.</li>
+          <li><em>מה יצא</em>4 לקוחות תוך פחות מחודשיים. הרביעית נסגרה ב-14,396 ₪.</li>
+        </ol>
+        <button type="button" class="case-see" data-proof="assets/proof-aviya.png" aria-label="ההודעה מאביה: התראת תשלום על 14,396 ₪">לראות את ההודעה שלה</button>
+      </div>
+    </article>
+
+    <div class="stack center reveal">
+      <p class="lead">זאת השיטה. <strong>בבאנדל אתם מקבלים את החלק שלה שגורם ללקוח למכור לעצמו.</strong></p>
+      <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>כן! תהפכו את עולמי</span><span class="ab-btn__c"><svg><use href="#arrow"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
 <!-- ================= CLOSE ================= -->
 <section class="sec close blobs">
   <div class="wrap stack center reveal">
@@ -1685,6 +1825,50 @@ document.documentElement.classList.add("js");
     box.addEventListener("mouseenter", () => { paused = true; run(); }); box.addEventListener("mouseleave", () => { paused = false; run(); });
     new IntersectionObserver(([e]) => { vis = e.isIntersecting; run(); }, { threshold: .3 }).observe(row);
   });
+
+  // cases: switcher + small result animations when a case is shown
+  (() => {
+    const tabs = [...document.querySelectorAll("[data-case-tab]")], cases = [...document.querySelectorAll("[data-case]")];
+    if (!tabs.length) return;
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const seats = document.querySelector("[data-seats]");
+    for (let k = 0; k < 20; k++) seats.insertAdjacentHTML("beforeend", "<i></i>");
+    const timers = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, still ? 0 : ms));
+    const play = id => {
+      timers.splice(0).forEach(clearTimeout);
+      const c = document.querySelector(`[data-case="${id}"]`);
+      if (id === "or") {
+        const n = document.querySelector("[data-seats-n]"), dots = [...seats.children], steps = [...c.querySelectorAll(".otl i")];
+        dots.forEach(d => d.classList.remove("on")); steps.forEach(s => s.classList.remove("on")); n.textContent = "0/20";
+        let filled = 0;
+        steps.forEach((st, k) => later(() => {
+          st.classList.add("on");
+          const to = +st.dataset.at;
+          for (let j = filled; j < to; j++) later(() => { dots[j].classList.add("on"); n.textContent = `${j + 1}/20`; }, (j - filled) * 70);
+          filled = to;
+        }, 300 + k * 1100));
+      }
+      if (id === "avishag") {
+        const ring = c.querySelector(".clock24"), b = c.querySelector("[data-clock24]");
+        ring.classList.remove("on"); b.textContent = "0"; void ring.offsetWidth;
+        later(() => ring.classList.add("on"), 200);
+        for (let k = 1; k <= 6; k++) later(() => b.textContent = k, 200 + k * 250);
+      }
+      if (id === "aviya") {
+        const d = [...c.querySelectorAll(".deals i")]; d.forEach(x => x.classList.remove("on"));
+        d.forEach((x, k) => later(() => x.classList.add("on"), 250 + k * 380));
+      }
+    };
+    const show = id => {
+      tabs.forEach(t => t.setAttribute("aria-selected", t.dataset.caseTab === id));
+      cases.forEach(c => c.hidden = c.dataset.case !== id);
+      play(id);
+    };
+    tabs.forEach(t => t.addEventListener("click", () => show(t.dataset.caseTab)));
+    let seen = false;
+    new IntersectionObserver(([e], o) => { if (e.isIntersecting && !seen) { seen = true; play("or"); o.disconnect(); } }, { threshold: .35 }).observe(cases[0]);
+  })();
 
   // proof: open a message in full; numbers count up once in view
   (() => {
