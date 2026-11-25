@@ -1238,6 +1238,28 @@
   @media (max-width: 480px) { .journey { padding-inline-start: 46px; } .journey::before { inset-inline-start: 6px; width: 26px; } .journey::after { inset-inline-start: 18px; }
     .stop .dot, .stop.key .dot { inset-inline-start: -46px; width: 36px !important; height: 36px !important; font-size: 15px !important; } }
   @media (max-width: 600px) { .thoughts { display: flex !important; flex-wrap: wrap; align-items: center; gap: 4px 10px; } }
+  /* thin road line */
+  .journey::before { width: 4px !important; border-radius: 2px; border: 0; inset-inline-start: 23px !important; box-shadow: 0 0 12px rgba(255,90,87,.45); }
+  .journey::after { display: none; }
+  @media (max-width: 480px) { .journey::before { inset-inline-start: 16px !important; } }
+  /* spacing system: one rhythm for the whole page */
+  .sec:not(.hero) { padding-block: 64px; }
+  .sec.tight { padding-block: 52px; }
+  .sec.cases { padding-block: 56px; }
+  .sec.close { padding-block: 64px 96px; }
+  .ticker { margin-block: 28px !important; }
+  .msgs { margin-top: 48px; }
+  .gifts-head { margin-top: 64px; }
+  .proof .msgs, .exposure .msgs { margin-top: 28px; }
+  @media (min-width: 900px) {
+    .sec:not(.hero) { padding-block: 96px; }
+    .sec.tight { padding-block: 72px; }
+    .sec.cases { padding-block: 72px; }
+    .sec.close { padding-block: 96px 120px; }
+    .gifts-head { margin-top: 96px; }
+  }
+  .sec.close { padding-top: 40px; } @media (min-width: 900px) { .sec.close { padding-top: 56px; } }
+  footer { padding-top: 24px !important; }
 </style>
 </head>
 <body>
