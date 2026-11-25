@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>The Inbox · אופציה</title>
+<link rel="icon" href="assets/ananas-icon-color.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@500;700&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/components.css">
+<style>
+  :root { --night: #120806; --ink: #FFF6F0; --ink-2: #E9D6CB; --ink-3: #C9A99B; --label: #FFB59A; --pink: #FCCBF0; --coral: #FF5A57;
+          --grad: linear-gradient(270deg, #FCCBF0 0%, #FD92A3 45%, #FF5A57 100%);
+          --btn: linear-gradient(260deg, #E8433F 0%, #FF5A57 50%, #FF8A6B 100%); --script: "Playpen Sans Hebrew", cursive; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--night); color: var(--ink); overflow-x: clip; }
+  body { font-family: var(--font-he, "Almoni", system-ui, sans-serif); }
+  h2, p { margin: 0; }
+  img { display: block; max-width: 100%; }
+  .note { width: min(760px, calc(100% - 32px)); margin: 24px auto 0; padding: 10px 14px; border-radius: 14px; border: 1px dashed rgba(255,181,154,.5); color: var(--label); font-size: 13.5px; text-align: center; }
+
+  .inbox { position: relative; isolation: isolate; padding: 64px 16px 72px; overflow-x: clip; }
+  .inbox::before { content: ""; position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(40% 30% at 20% 30%, rgba(255,90,87,.22), transparent 70%), radial-gradient(35% 30% at 85% 70%, rgba(253,146,163,.16), transparent 70%); filter: blur(20px); }
+  .head { text-align: center; display: grid; gap: 14px; justify-items: center; width: min(820px, 100%); margin: 0 auto 44px; }
+  .kick { font-family: "Josefin Sans", sans-serif; font-weight: 700; letter-spacing: .32em; font-size: 13px; color: var(--label); display: inline-flex; gap: 10px; align-items: center; direction: ltr; }
+  .kick i { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 12px var(--coral); animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .3; } }
+  .head h2 { font-size: clamp(36px, 6.4vw, 76px); font-weight: 900; line-height: 1.02; letter-spacing: -.01em; }
+  .head h2 .l2 { display: block; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .head p { font-size: clamp(17px, 2vw, 21px); color: var(--ink-2); }
+
+  /* the collage */
+  .wall { position: relative; width: min(1180px, 100%); margin-inline: auto; display: grid; gap: 34px; }
+  .msg { position: relative; margin: 0; width: min(440px, 92%); transform: rotate(var(--r, 0deg)); justify-self: var(--side, center);
+         transition: transform .5s cubic-bezier(.2,.9,.3,1); }
+  .msg:hover { transform: rotate(0deg) scale(1.02); z-index: 5; }
+  .shot { position: relative; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 60px -24px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.1); background: #F5EFE8; }
+  .shot img { width: 100%; height: auto; }
+  .mk { position: absolute; border-radius: 6px; background: rgba(255,95,80,.42); mix-blend-mode: multiply; transform: scaleX(0); transform-origin: right; transition: transform .7s cubic-bezier(.6,.1,.3,1) .3s; }
+  .msg.on .mk { transform: scaleX(1); }
+  .amt { position: absolute; z-index: 3; top: -22px; left: -14px; transform: rotate(-6deg); display: grid; gap: 0; padding: 10px 16px 9px; border-radius: 16px; background: var(--btn); color: #fff;
+         box-shadow: 0 18px 34px -12px rgba(255,90,87,.95), inset 0 1px 0 rgba(255,255,255,.35); text-align: center; }
+  .amt b { font-size: clamp(26px, 3.4vw, 36px); font-weight: 900; line-height: 1; letter-spacing: -.01em; }
+  .amt span { font-size: 12px; font-weight: 800; opacity: .95; }
+  .msg.alt .amt { left: auto; right: -14px; transform: rotate(5deg); background: #fff; color: #120806; }
+  .who { margin-top: 10px; font-family: var(--script); font-weight: 700; color: var(--pink); font-size: 17px; text-align: center; }
+
+  /* depth: blurred real messages drifting behind */
+  .ghosts { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .ghosts img { position: absolute; width: 230px; border-radius: 16px; filter: blur(5px) saturate(.6) brightness(.55); opacity: .45; }
+
+  @media (min-width: 900px) {
+    .wall { grid-template-columns: repeat(6, 1fr); gap: 46px 30px; align-items: start; }
+    .msg { width: 100%; grid-column: span 2; }
+    .msg:nth-child(2) { margin-top: 90px; } .msg:nth-child(3) { margin-top: 20px; }
+    .msg:nth-child(4) { grid-column: 2 / span 2; } .msg:nth-child(5) { grid-column: 4 / span 2; margin-top: 60px; }
+    .msg:nth-child(6) { margin-top: -30px; } .msg:nth-child(7) { margin-top: 40px; } .msg:nth-child(8) { margin-top: -10px; }
+  }
+
+  .end { text-align: center; display: grid; gap: 12px; justify-items: center; margin-top: 56px; }
+  .cta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 17px 32px; border-radius: 99px; background: var(--btn); color: #fff; font-weight: 900; font-size: 19px; text-decoration: none; box-shadow: 0 18px 40px -14px rgba(255,90,87,.9), inset 0 1px 0 rgba(255,255,255,.4); }
+  .fine { font-size: 12.5px; color: var(--ink-3); }
+  @media (prefers-reduced-motion: reduce) { .mk { transform: none; transition: none; } .kick i { animation: none; } }
+  .msg.short { margin-top: 40px; } .msg.short .amt { top: -56px; }
+  @media (max-width: 600px) { .head h2 { font-size: 8.4vw; } .head h2 .l2 { font-size: 1.12em; } }
+</style>
+</head>
+<body>
+<p class="note">אופציה לבדיקה בלבד. הדף האמיתי לא השתנה. כל ההודעות והמספרים אמיתיים, מתוך הצילומים שלכן.</p>
+
+<section class="inbox">
+  <div class="ghosts" aria-hidden="true">
+    <img src="assets/msg-biz-d6.png" alt="" style="top:4%;left:2%;transform:rotate(-8deg)">
+    <img src="assets/msg-biz-d7.png" alt="" style="top:30%;right:-40px;transform:rotate(7deg)">
+    <img src="assets/msg-biz-shanit.jpg" alt="" style="top:62%;left:-30px;transform:rotate(5deg)">
+    <img src="assets/msg-biz-d8.png" alt="" style="bottom:4%;right:6%;transform:rotate(-6deg)">
+  </div>
+
+  <div class="head">
+    <span class="kick"><i></i>THE INBOX</span>
+    <h2>פחות ״אני אחשוב על זה״.<span class="l2">יותר ״איך משלמים?״</span></h2>
+    <p>ככה נראה שיווק שעושה את העבודה שלו.</p>
+  </div>
+
+  <div class="wall">
+    <figure class="msg" style="--r:-2deg;--side:start">
+      <span class="amt"><b dir="ltr">+10,000 ₪</b><span>בהכנסה מתחילת הקורס</span></span>
+      <div class="shot"><img src="assets/msg-biz-d9.png" alt="אלמוג: סה״כ הכנסות 26,111 ₪, וזה שההכנסה שלי עלתה ב-10,000 ₪ מתחילת הקורס" width="552" height="634" loading="lazy">
+        <i class="mk" style="right:3%;top:45.5%;width:93%;height:9.5%"></i></div>
+      <figcaption class="who">אלמוג</figcaption>
+    </figure>
+
+    <figure class="msg alt" style="--r:2.5deg;--side:end">
+      <span class="amt"><b>6 ליווים</b><span>תוך 24 שעות</span></span>
+      <div class="shot"><img src="assets/proof-avishag.jpg" alt="אבישג: סגרתי 6 ליווים תוך 24 שעות מיום ההשקה" width="760" height="724" loading="lazy">
+        <i class="mk" style="right:3%;top:39%;width:62%;height:10%"></i></div>
+      <figcaption class="who">אבישג</figcaption>
+    </figure>
+
+    <figure class="msg" style="--r:-1.5deg;--side:start">
+      <span class="amt"><b dir="ltr">14,396 ₪</b><span>עסקה אחת. ליווי רביעי.</span></span>
+      <div class="shot"><img src="assets/proof-aviya.png" alt="אביה: התראת תשלום על 14,396 ₪, ליווי מספר 4" width="603" height="817" loading="lazy">
+        <i class="mk" style="right:15%;top:17%;width:70%;height:9.5%"></i></div>
+      <figcaption class="who">אביה</figcaption>
+    </figure>
+
+    <figure class="msg alt short" style="--r:2deg;--side:end">
+      <span class="amt"><b dir="ltr">11,000 ₪</b><span>לחודש, ל-3 חודשים</span></span>
+      <div class="shot"><img src="assets/msg-biz-d4.png" alt="גפן: סגרתי לקוח שמאוד רציתי לעבוד איתו, ב-11 אלף לחודש פלוס מע״מ ל-3 חודשים" width="508" height="194" loading="lazy">
+        <i class="mk" style="right:8%;top:62%;width:64%;height:17%"></i></div>
+      <figcaption class="who">גפן</figcaption>
+    </figure>
+
+    <figure class="msg" style="--r:-2.5deg;--side:start">
+      <span class="amt"><b dir="ltr">10,500 ₪</b><span>פעם סגרה 2,000–3,000</span></span>
+      <div class="shot"><img src="assets/msg-biz-d3.png" alt="אנסטסיה: סגרתי היום לקוח ב-10,500, כשפעם הייתי סוגרת בין 2,000 ל-3,000" width="460" height="510" loading="lazy">
+        <i class="mk" style="right:3%;top:70%;width:60%;height:5.5%"></i></div>
+      <figcaption class="who">אנסטסיה</figcaption>
+    </figure>
+
+    <figure class="msg alt" style="--r:1.5deg;--side:end">
+      <span class="amt"><b dir="ltr">8,100 ₪</b><span>חצי שנה ליווי</span></span>
+      <div class="shot"><img src="assets/msg-biz-yael.png" alt="יעל: פעם ראשונה שמכרתי ליווי במחיר שאני באמת רוצה, חצי שנה ליווי ב-8,100 שח" width="632" height="566" loading="lazy">
+        <i class="mk" style="right:35%;top:56%;width:36%;height:5.5%"></i></div>
+      <figcaption class="who">יעל</figcaption>
+    </figure>
+
+    <figure class="msg" style="--r:-1deg;--side:start">
+      <span class="amt"><b dir="ltr">7,500 ₪</b><span>מליד אורגני</span></span>
+      <div class="shot"><img src="assets/proof-hadar.jpg" alt="הדר: ליווי חדש נסגר ב-7500 פלוס מעמ, הליד הגיע אורגני" width="720" height="671" loading="lazy">
+        <i class="mk" style="right:12%;top:26%;width:61%;height:8.5%"></i></div>
+      <figcaption class="who">הדר</figcaption>
+    </figure>
+
+    <figure class="msg alt" style="--r:2deg;--side:end">
+      <span class="amt"><b>8 בפנים</b><span>יומיים אחרי ההשקה</span></span>
+      <div class="shot"><img src="assets/proof-or-2days.png" alt="אור, יומיים אחרי ההשקה: נסגרו היום עוד 5, אנחנו עם 8 בפנים" width="483" height="331" loading="lazy">
+        <i class="mk" style="right:4%;top:68%;width:57%;height:10%"></i></div>
+      <figcaption class="who">אור</figcaption>
+    </figure>
+  </div>
+
+  <div class="end">
+    <a class="cta" href="#">גם אני רוצה הודעה כזאת</a>
+    <p class="fine">הודעות אמיתיות, כמו שהן. התוצאות של כל אחת תלויות בעבודה שלה.</p>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: .5 });
+  document.querySelectorAll(".msg").forEach(m => io.observe(m));
+</script>
+</body>
+</html>
