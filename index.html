@@ -1299,6 +1299,54 @@
   .value-stack .total-row { border-bottom: 0; padding-top: 16px; font-size: 18px; }
   .value-stack .total-row .vk { font-weight: 900; }
   .value-stack .total-row .vv s { font-size: 20px; font-weight: 900; color: #fff; }
+  /* ===== THE INBOX (proof) ===== */
+          --grad: linear-gradient(270deg, #FCCBF0 0%, #FD92A3 45%, #FF5A57 100%);
+          --btn: linear-gradient(260deg, #E8433F 0%, #FF5A57 50%, #FF8A6B 100%); --script: "Playpen Sans Hebrew", cursive; }
+
+  #proof.inbox { position: relative; isolation: isolate; padding: 64px 16px 72px; overflow-x: clip; }
+  #proof.inbox::before { content: ""; position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(40% 30% at 20% 30%, rgba(255,90,87,.22), transparent 70%), radial-gradient(35% 30% at 85% 70%, rgba(253,146,163,.16), transparent 70%); filter: blur(20px); }
+  .ihead { text-align: center; display: grid; gap: 14px; justify-items: center; width: min(820px, 100%); margin: 0 auto 44px; }
+  .ikick { font-family: "Josefin Sans", sans-serif; font-weight: 700; letter-spacing: .32em; font-size: 13px; color: var(--label); display: inline-flex; gap: 10px; align-items: center; direction: ltr; }
+  .ikick i { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 12px var(--coral); animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: .3; } }
+  .ihead h2 { font-size: clamp(36px, 6.4vw, 76px); font-weight: 900; line-height: 1.02; letter-spacing: -.01em; }
+  .ihead h2 .l2 { display: block; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .ihead p { font-size: clamp(17px, 2vw, 21px); color: var(--ink-2); }
+
+  /* the collage */
+  .iwall { position: relative; width: min(1180px, 100%); margin-inline: auto; display: grid; gap: 34px; }
+  .imsg { position: relative; margin: 0; width: min(440px, 92%); transform: rotate(var(--r, 0deg)); justify-self: var(--side, center);
+         transition: transform .5s cubic-bezier(.2,.9,.3,1); }
+  .imsg:hover { transform: rotate(0deg) scale(1.02); z-index: 5; }
+  .ishot { position: relative; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 60px -24px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.1); background: #F5EFE8; }
+  .ishot img { width: 100%; height: auto; }
+  .imk { position: absolute; border-radius: 6px; background: rgba(255,95,80,.42); mix-blend-mode: multiply; transform: scaleX(0); transform-origin: right; transition: transform .7s cubic-bezier(.6,.1,.3,1) .3s; }
+  .imsg.on .imk { transform: scaleX(1); }
+  .iamt { position: absolute; z-index: 3; top: -22px; left: -14px; transform: rotate(-6deg); display: grid; gap: 0; padding: 10px 16px 9px; border-radius: 16px; background: var(--btn); color: #fff;
+         box-shadow: 0 18px 34px -12px rgba(255,90,87,.95), inset 0 1px 0 rgba(255,255,255,.35); text-align: center; }
+  .iamt b { font-size: clamp(26px, 3.4vw, 36px); font-weight: 900; line-height: 1; letter-spacing: -.01em; }
+  .iamt span { font-size: 12px; font-weight: 800; opacity: .95; }
+  .imsg.ialt .iamt { left: auto; right: -14px; transform: rotate(5deg); background: #fff; color: #120806; }
+  .iwho { margin-top: 10px; font-family: var(--script); font-weight: 700; color: var(--pink); font-size: 17px; text-align: center; }
+
+  /* depth: blurred real messages drifting behind */
+  .ighosts { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .ighosts img { position: absolute; width: 230px; border-radius: 16px; filter: blur(5px) saturate(.6) brightness(.55); opacity: .45; }
+
+  @media (min-width: 900px) {
+    .iwall { grid-template-columns: repeat(6, 1fr); gap: 46px 30px; align-items: start; }
+    .imsg { width: 100%; grid-column: span 2; }
+    .imsg:nth-child(2) { margin-top: 90px; } .imsg:nth-child(3) { margin-top: 20px; }
+    .imsg:nth-child(4) { grid-column: 2 / span 2; } .imsg:nth-child(5) { grid-column: 4 / span 2; margin-top: 60px; }
+    .imsg:nth-child(6) { margin-top: -30px; } .imsg:nth-child(7) { margin-top: 40px; } .imsg:nth-child(8) { margin-top: -10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { .imk { transform: none; transition: none; } .ikick i { animation: none; } }
+  .imsg.ishort { margin-top: 40px; } .imsg.ishort .iamt { top: -56px; }
+  @media (max-width: 600px) { .ihead h2 { font-size: 8.4vw; } .ihead h2 .l2 { font-size: 1.12em; } }
+
+  #proof .iwall { margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -1338,7 +1386,7 @@
       </div>
     </div>
     <div class="core">
-      <span class="chip glass">השיטה של אננס. נבחנה ביותר מ-1,000 עסקים.</span>
+      <span class="chip glass">מה שאנחנו מלמדות בחדרי הייעוץ עכשיו אצלכם.</span>
       <span class="script">פסיכולוגיה של הצרכן</span>
       <h1 class="title"><span class="tl">איך לגרום ללקוח שלכם</span>למכור לעצמו, <span class="hot">עוד לפני שיחת המכירה?</span></h1>
     </div>
@@ -1475,23 +1523,79 @@
 </section>
 
 <!-- ================= PROOF: real results ================= -->
-<section class="sec proof blobs" id="proof">
+<section class="sec proof inbox" id="proof">
+  <div class="ighosts" aria-hidden="true">
+    <img src="assets/msg-biz-d6.png" alt="" style="top:4%;left:2%;transform:rotate(-8deg)">
+    <img src="assets/msg-biz-d7.png" alt="" style="top:30%;right:-40px;transform:rotate(7deg)">
+    <img src="assets/msg-biz-shanit.jpg" alt="" style="top:62%;left:-30px;transform:rotate(5deg)">
+    <img src="assets/msg-biz-d8.png" alt="" style="bottom:4%;right:6%;transform:rotate(-6deg)">
+  </div>
   <div class="wrap stack">
-    <div class="stack center reveal">
-      <span class="script">לא מאמינים לנו?</span>
-      <h2 class="title">ככה זה נראה <span class="hot">כשהתוכן מוכר.</span></h2>
-      <p class="lead">הודעות אמיתיות מתלמידות ולקוחות שעובדות בשיטה של אננס. <strong>לא צפיות ולא לייקים. מכירות.</strong></p>
+    <div class="ihead reveal">
+      <span class="ikick"><i></i>THE INBOX</span>
+      <h2>פחות ״אני אחשוב על זה״.<span class="l2">יותר ״איך משלמים?״</span></h2>
+      <p>ככה נראה שיווק שעושה את העבודה שלו.</p>
     </div>
+    <div class="iwall">
+    <figure class="imsg" style="--r:-2deg;--side:start">
+      <span class="iamt"><b dir="ltr">+10,000 ₪</b><span>בהכנסה מתחילת הקורס</span></span>
+      <div class="ishot"><img src="assets/msg-biz-d9.png" alt="אלמוג: סה״כ הכנסות 26,111 ₪, וזה שההכנסה שלי עלתה ב-10,000 ₪ מתחילת הקורס" width="552" height="634" loading="lazy">
+        <i class="imk" style="right:3%;top:45.5%;width:93%;height:9.5%"></i></div>
+      <figcaption class="iwho">אלמוג</figcaption>
+    </figure>
 
-    <div class="stats-proof">
-      <button type="button" class="sp glass reveal" data-proof="assets/proof-avishag.jpg"><b data-count="6">6</b><span class="sp-k">ליווים ב-24 שעות</span><span class="sp-who">אבישג, מיום ההשקה</span><span class="sp-see">לראות את ההודעה</span></button>
-      <button type="button" class="sp glass reveal" data-proof="assets/proof-aviya.png"><b data-count="14396" data-suffix=" ₪">14,396 ₪</b><span class="sp-k">עסקה אחת, ליווי רביעי</span><span class="sp-who">אביה</span><span class="sp-see">לראות את ההודעה</span></button>
-      <button type="button" class="sp glass reveal" data-proof="assets/proof-or-2days.png"><b data-count="8">8</b><span class="sp-k">נרשמות תוך יומיים מההשקה</span><span class="sp-who">אור</span><span class="sp-see">לראות את ההודעה</span></button>
-      <button type="button" class="sp glass reveal" data-proof="assets/proof-hadar.jpg"><b data-count="7500" data-suffix=" ₪">7,500 ₪</b><span class="sp-k">ליווי מליד אורגני</span><span class="sp-who">הדר</span><span class="sp-see">לראות את ההודעה</span></button>
-    </div>
+    <figure class="imsg ialt" style="--r:2.5deg;--side:end">
+      <span class="iamt"><b>6 ליווים</b><span>תוך 24 שעות</span></span>
+      <div class="ishot"><img src="assets/proof-avishag.jpg" alt="אבישג: סגרתי 6 ליווים תוך 24 שעות מיום ההשקה" width="760" height="724" loading="lazy">
+        <i class="imk" style="right:3%;top:39%;width:62%;height:10%"></i></div>
+      <figcaption class="iwho">אבישג</figcaption>
+    </figure>
+
+    <figure class="imsg" style="--r:-1.5deg;--side:start">
+      <span class="iamt"><b dir="ltr">14,396 ₪</b><span>עסקה אחת. ליווי רביעי.</span></span>
+      <div class="ishot"><img src="assets/proof-aviya.png" alt="אביה: התראת תשלום על 14,396 ₪, ליווי מספר 4" width="603" height="817" loading="lazy">
+        <i class="imk" style="right:15%;top:17%;width:70%;height:9.5%"></i></div>
+      <figcaption class="iwho">אביה</figcaption>
+    </figure>
+
+    <figure class="imsg ialt ishort" style="--r:2deg;--side:end">
+      <span class="iamt"><b dir="ltr">11,000 ₪</b><span>לחודש, ל-3 חודשים</span></span>
+      <div class="ishot"><img src="assets/msg-biz-d4.png" alt="גפן: סגרתי לקוח שמאוד רציתי לעבוד איתו, ב-11 אלף לחודש פלוס מע״מ ל-3 חודשים" width="508" height="194" loading="lazy">
+        <i class="imk" style="right:8%;top:62%;width:64%;height:17%"></i></div>
+      <figcaption class="iwho">גפן</figcaption>
+    </figure>
+
+    <figure class="imsg" style="--r:-2.5deg;--side:start">
+      <span class="iamt"><b dir="ltr">10,500 ₪</b><span>פעם סגרה 2,000–3,000</span></span>
+      <div class="ishot"><img src="assets/msg-biz-d3.png" alt="אנסטסיה: סגרתי היום לקוח ב-10,500, כשפעם הייתי סוגרת בין 2,000 ל-3,000" width="460" height="510" loading="lazy">
+        <i class="imk" style="right:3%;top:70%;width:60%;height:5.5%"></i></div>
+      <figcaption class="iwho">אנסטסיה</figcaption>
+    </figure>
+
+    <figure class="imsg ialt" style="--r:1.5deg;--side:end">
+      <span class="iamt"><b dir="ltr">8,100 ₪</b><span>חצי שנה ליווי</span></span>
+      <div class="ishot"><img src="assets/msg-biz-yael.png" alt="יעל: פעם ראשונה שמכרתי ליווי במחיר שאני באמת רוצה, חצי שנה ליווי ב-8,100 שח" width="632" height="566" loading="lazy">
+        <i class="imk" style="right:35%;top:56%;width:36%;height:5.5%"></i></div>
+      <figcaption class="iwho">יעל</figcaption>
+    </figure>
+
+    <figure class="imsg" style="--r:-1deg;--side:start">
+      <span class="iamt"><b dir="ltr">7,500 ₪</b><span>מליד אורגני</span></span>
+      <div class="ishot"><img src="assets/proof-hadar.jpg" alt="הדר: ליווי חדש נסגר ב-7500 פלוס מעמ, הליד הגיע אורגני" width="720" height="671" loading="lazy">
+        <i class="imk" style="right:12%;top:26%;width:61%;height:8.5%"></i></div>
+      <figcaption class="iwho">הדר</figcaption>
+    </figure>
+
+    <figure class="imsg ialt" style="--r:2deg;--side:end">
+      <span class="iamt"><b>8 בפנים</b><span>יומיים אחרי ההשקה</span></span>
+      <div class="ishot"><img src="assets/proof-or-2days.png" alt="אור, יומיים אחרי ההשקה: נסגרו היום עוד 5, אנחנו עם 8 בפנים" width="483" height="331" loading="lazy">
+        <i class="imk" style="right:4%;top:68%;width:57%;height:10%"></i></div>
+      <figcaption class="iwho">אור</figcaption>
+    </figure>
+  </div>
     <div class="msgs" data-msgs aria-label="הודעות אמיתיות על מכירות">
-      <div class="msgs-head reveal"><span class="script">ועוד כמה הודעות שקיבלנו</span><p>לקוחות, עסקאות וריטיינרים. לחצו להגדלה.</p></div>
-      <div class="msgs-row" data-msgs-row><button type="button" class="msg" data-proof="assets/msg-biz-d9.png" aria-label="אלמוג: ההכנסה עלתה ב-10,000 ₪ מתחילת הקורס"><img src="assets/msg-biz-d9.png" alt="אלמוג: ההכנסה עלתה ב-10,000 ₪ מתחילת הקורס" loading="lazy"></button><button type="button" class="msg" data-proof="assets/proof-avishag.jpg" aria-label="אבישג: סגרתי 6 ליווים תוך 24 שעות מיום ההשקה"><img src="assets/proof-avishag.jpg" alt="אבישג: סגרתי 6 ליווים תוך 24 שעות מיום ההשקה" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d5.png" aria-label="נטלי: סגרתי ריטיינר של 5,500 ₪ ל-3 חודשים"><img src="assets/msg-biz-d5.png" alt="נטלי: סגרתי ריטיינר של 5,500 ₪ ל-3 חודשים" loading="lazy"></button><button type="button" class="msg" data-proof="assets/proof-aviya.png" aria-label="אביה: עסקה של 14,396 ₪, ליווי מספר 4"><img src="assets/proof-aviya.png" alt="אביה: עסקה של 14,396 ₪, ליווי מספר 4" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d4.png" aria-label="גפן: סגרתי לקוח ב-11 אלף לחודש פלוס מע״מ ל-3 חודשים"><img src="assets/msg-biz-d4.png" alt="גפן: סגרתי לקוח ב-11 אלף לחודש פלוס מע״מ ל-3 חודשים" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d3.png" aria-label="אנסטסיה: סגרתי היום לקוח ב-10,500 ₪, פעם סגרתי בין 2,000 ל-3,000"><img src="assets/msg-biz-d3.png" alt="אנסטסיה: סגרתי היום לקוח ב-10,500 ₪, פעם סגרתי בין 2,000 ל-3,000" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-yael.png" aria-label="יעל: חצי שנה ליווי ב-8,100 ₪, בפעם הראשונה במחיר שרציתי"><img src="assets/msg-biz-yael.png" alt="יעל: חצי שנה ליווי ב-8,100 ₪, בפעם הראשונה במחיר שרציתי" loading="lazy"></button><button type="button" class="msg" data-proof="assets/proof-hadar.jpg" aria-label="הדר: ליווי חדש נסגר ב-7,500 פלוס מע״מ, הליד הגיע אורגני"><img src="assets/proof-hadar.jpg" alt="הדר: ליווי חדש נסגר ב-7,500 פלוס מע״מ, הליד הגיע אורגני" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d10.png" aria-label="סגרתי לקוח ב-7,000 ₪ בריטיינר כל חודש, ועוד לקוח ב-4,500 ₪"><img src="assets/msg-biz-d10.png" alt="סגרתי לקוח ב-7,000 ₪ בריטיינר כל חודש, ועוד לקוח ב-4,500 ₪" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-shanit.jpg" aria-label="שאנית: סגרתי 5 לקוחות בחודש והגעתי למשכורת שהרווחתי בהייטק"><img src="assets/msg-biz-shanit.jpg" alt="שאנית: סגרתי 5 לקוחות בחודש והגעתי למשכורת שהרווחתי בהייטק" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d8.png" aria-label="ירדן: 8 נרשמות מתוך 10 לסדנה, וערב נוסף סולד אאוט"><img src="assets/msg-biz-d8.png" alt="ירדן: 8 נרשמות מתוך 10 לסדנה, וערב נוסף סולד אאוט" loading="lazy"></button><button type="button" class="msg" data-proof="assets/proof-or-2days.png" aria-label="אור, אחרי יומיים: נסגרו היום עוד 5, אנחנו עם 8 בפנים"><img src="assets/proof-or-2days.png" alt="אור, אחרי יומיים: נסגרו היום עוד 5, אנחנו עם 8 בפנים" loading="lazy"></button><button type="button" class="msg" data-proof="assets/proof-or-events.jpg" aria-label="אור: 3 אירועים בשבוע הבא, שנסגרו בחודש האחרון"><img src="assets/proof-or-events.jpg" alt="אור: 3 אירועים בשבוע הבא, שנסגרו בחודש האחרון" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d6.png" aria-label="סגרתי לקוח לתהליך של 3 חודשים ב-3,500 ₪ לחודש, כשלקחתי פעם 1,800"><img src="assets/msg-biz-d6.png" alt="סגרתי לקוח לתהליך של 3 חודשים ב-3,500 ₪ לחודש, כשלקחתי פעם 1,800" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d7.png" aria-label="ליווי ב-3,000 ₪ לחודש בריטיינר של 3 חודשים, 4 לקוחות מאז שהתחילה"><img src="assets/msg-biz-d7.png" alt="ליווי ב-3,000 ₪ לחודש בריטיינר של 3 חודשים, 4 לקוחות מאז שהתחילה" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d1.png" aria-label="סיימנו רק את השיעור השני וכבר למדתי פי שניים מחצי שנה באוניברסיטה"><img src="assets/msg-biz-d1.png" alt="סיימנו רק את השיעור השני וכבר למדתי פי שניים מחצי שנה באוניברסיטה" loading="lazy"></button></div>
+      <div class="msgs-head reveal"><span class="script">ויש עוד</span><p>לקוחות, עסקאות וריטיינרים. לחצו להגדלה.</p></div>
+      <div class="msgs-row" data-msgs-row><button type="button" class="msg" data-proof="assets/msg-biz-d5.png" aria-label="נטלי: סגרתי ריטיינר של 5,500 ₪ ל-3 חודשים"><img src="assets/msg-biz-d5.png" alt="נטלי: סגרתי ריטיינר של 5,500 ₪ ל-3 חודשים" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d10.png" aria-label="סגרתי לקוח ב-7,000 ₪ בריטיינר כל חודש, ועוד לקוח ב-4,500 ₪"><img src="assets/msg-biz-d10.png" alt="סגרתי לקוח ב-7,000 ₪ בריטיינר כל חודש, ועוד לקוח ב-4,500 ₪" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-shanit.jpg" aria-label="שאנית: סגרתי 5 לקוחות בחודש והגעתי למשכורת שהרווחתי בהייטק"><img src="assets/msg-biz-shanit.jpg" alt="שאנית: סגרתי 5 לקוחות בחודש והגעתי למשכורת שהרווחתי בהייטק" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d8.png" aria-label="ירדן: 8 נרשמות מתוך 10 לסדנה, וערב נוסף סולד אאוט"><img src="assets/msg-biz-d8.png" alt="ירדן: 8 נרשמות מתוך 10 לסדנה, וערב נוסף סולד אאוט" loading="lazy"></button><button type="button" class="msg" data-proof="assets/proof-or-events.jpg" aria-label="אור: 3 אירועים בשבוע הבא, שנסגרו בחודש האחרון"><img src="assets/proof-or-events.jpg" alt="אור: 3 אירועים בשבוע הבא, שנסגרו בחודש האחרון" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d6.png" aria-label="סגרתי לקוח לתהליך של 3 חודשים ב-3,500 ₪ לחודש, כשלקחתי פעם 1,800"><img src="assets/msg-biz-d6.png" alt="סגרתי לקוח לתהליך של 3 חודשים ב-3,500 ₪ לחודש, כשלקחתי פעם 1,800" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d7.png" aria-label="ליווי ב-3,000 ₪ לחודש בריטיינר של 3 חודשים, 4 לקוחות מאז שהתחילה"><img src="assets/msg-biz-d7.png" alt="ליווי ב-3,000 ₪ לחודש בריטיינר של 3 חודשים, 4 לקוחות מאז שהתחילה" loading="lazy"></button><button type="button" class="msg" data-proof="assets/msg-biz-d1.png" aria-label="סיימנו רק את השיעור השני וכבר למדתי פי שניים מחצי שנה באוניברסיטה"><img src="assets/msg-biz-d1.png" alt="סיימנו רק את השיעור השני וכבר למדתי פי שניים מחצי שנה באוניברסיטה" loading="lazy"></button></div>
       <div class="msgs-nav"><button type="button" class="pbtn" data-msgs-prev aria-label="ההודעה הקודמת"><svg class="ic"><use href="#arrow"/></svg></button><button type="button" class="pbtn" data-msgs-next aria-label="ההודעה הבאה"><svg class="ic"><use href="#arrow"/></svg></button></div>
     </div>
     <div class="stack center reveal">
@@ -2197,6 +2301,10 @@ document.documentElement.classList.add("js");
     addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd); upd();
   })();
 
+  // THE INBOX: draw the marker when a message comes into view
+  (() => { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: .5 });
+    document.querySelectorAll("#proof .imsg").forEach(m => io.observe(m)); })();
+
   // proof: open a message in full; numbers count up once in view
   (() => {
     const lb = document.querySelector("[data-lb]"), lbImg = document.querySelector("[data-lb-img]");
@@ -2248,7 +2356,7 @@ document.documentElement.classList.add("js");
     });
     bgs.forEach((b, i) => b.classList.toggle("on", i === cur));
     const l = LESSONS[cur];
-    meta.textContent = `הדרכה ${cur + 1} מתוך ${N} · כחצי שעה`;
+    meta.textContent = `הדרכה ${cur + 1} מתוך ${N}`;
     title.textContent = l.title;
     detail.innerHTML = `${l.text} <strong style="color:var(--ink)">יוצאים עם: ${l.out}.</strong>`;
   }
