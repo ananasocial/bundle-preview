@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>אגרוף · אופציה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@500;700&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/components.css">
+<style>
+  :root { --night: #120806; --ink: #FFF6F0; --ink-2: #E9D6CB; --ink-3: #C9A99B; --label: #FFB59A; --pink: #FCCBF0; --coral: #FF5A57;
+          --grad: linear-gradient(270deg, #FCCBF0 0%, #FD92A3 45%, #FF5A57 100%);
+          --btn: linear-gradient(260deg, #E8433F 0%, #FF5A57 50%, #FF8A6B 100%); --script: "Playpen Sans Hebrew", cursive; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--night); color: var(--ink); }
+  body { font-family: var(--font-he, "Almoni", system-ui, sans-serif); overflow-x: clip; }
+  h2, p { margin: 0; }
+  .note { width: min(760px, calc(100% - 32px)); margin: 24px auto; padding: 10px 14px; border-radius: 14px; border: 1px dashed rgba(255,181,154,.5); color: var(--label); font-size: 13.5px; text-align: center; }
+  .pad { height: 40vh; display: grid; place-items: center; color: var(--ink-3); font-size: 14px; }
+
+  /* scroll-driven story: tall track, sticky stage */
+  .track { position: relative; height: 520vh; }
+  .pstage { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; place-items: center; overflow: hidden; padding: 16px; isolation: isolate; }
+  .pstage::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(45% 40% at 50% 45%, rgba(255,90,87,calc(.08 + var(--heat,0) * .3)), transparent 70%); transition: background .3s; }
+  .pstage.crash::before { background: radial-gradient(60% 50% at 50% 45%, rgba(255,40,40,.12), transparent 70%); }
+
+  .box { width: min(420px, 100%); display: grid; gap: 18px; justify-items: center; text-align: center; }
+  .intro { font-size: clamp(22px, 5.4vw, 34px); font-weight: 900; line-height: 1.2; transition: opacity .4s; }
+  .intro small { display: block; font-size: 15px; font-weight: 400; color: var(--ink-2); margin-top: 8px; line-height: 1.5; }
+
+  .client { width: 100%; border-radius: 26px; padding: 18px; background: linear-gradient(160deg, rgba(255,255,255,.1), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.14);
+            display: grid; gap: 12px; transition: border-color .4s, box-shadow .4s, transform .2s; }
+  .who { display: flex; align-items: center; gap: 10px; }
+  .av { width: 44px; height: 44px; border-radius: 50%; background: var(--btn); display: grid; place-items: center; font-size: 20px; }
+  .who b { font-size: 18px; } .who span { font-size: 12.5px; color: var(--ink-3); display: block; }
+  .meter { height: 14px; border-radius: 99px; background: rgba(255,255,255,.08); overflow: hidden; direction: ltr; }
+  .meter i { display: block; height: 100%; width: calc(var(--heat,0) * 100%); background: var(--btn); border-radius: inherit; box-shadow: 0 0 18px rgba(255,90,87,.8); transition: width .25s; }
+  .mrow { display: flex; justify-content: space-between; font-size: 13px; font-weight: 800; color: var(--ink-2); }
+  .mrow b { font-family: "Josefin Sans", sans-serif; font-size: 16px; color: #fff; direction: ltr; }
+
+  .beats { position: relative; width: 100%; min-height: 96px; }
+  .beat { position: absolute; inset: 0; display: grid; gap: 4px; place-content: center; opacity: 0; transform: translateY(14px); transition: opacity .35s, transform .35s; }
+  .beat.on { opacity: 1; transform: none; }
+  .beat .m { font-family: "Josefin Sans", sans-serif; font-size: 12px; letter-spacing: .2em; color: var(--label); font-weight: 700; direction: ltr; }
+  .beat .l { font-size: clamp(19px, 4.8vw, 24px); font-weight: 900; }
+  .beat .l s { text-decoration: none; }
+  .beat .q { font-size: 15px; color: var(--ink-2); }
+  .chk { color: #7be3a6; }
+
+  /* the punch */
+  .notif { position: absolute; top: 14px; left: 50%; width: min(400px, calc(100% - 24px)); transform: translate(-50%, -140%); z-index: 20; border-radius: 22px; padding: 12px 14px;
+           background: rgba(245,245,245,.97); color: #111; display: grid; grid-template-columns: 38px 1fr; gap: 10px; align-items: center; text-align: right;
+           box-shadow: 0 20px 50px -10px rgba(0,0,0,.8); transition: transform .45s cubic-bezier(.2,1.3,.4,1); }
+  .notif .ic { width: 38px; height: 38px; border-radius: 10px; background: #1b9e55; display: grid; place-items: center; color: #fff; font-size: 20px; font-weight: 900; }
+  .notif b { font-size: 14.5px; display: block; } .notif span { font-size: 13.5px; color: #333; } .notif small { font-size: 11px; color: #777; }
+  .pstage.crash .notif { transform: translate(-50%, 0); }
+  .pstage.crash .client { border-color: rgba(255,60,60,.7); box-shadow: 0 0 0 4px rgba(255,60,60,.15); animation: shake .45s; }
+  .pstage.crash .meter i { background: #555; box-shadow: none; }
+  @keyframes shake { 20% { transform: translateX(-8px); } 40% { transform: translateX(8px); } 60% { transform: translateX(-5px); } 80% { transform: translateX(5px); } }
+  .pstage.crash .intro { opacity: .15; }
+
+  .punch { position: absolute; inset: auto 16px 9vh; text-align: center; opacity: 0; transform: translateY(20px); transition: opacity .5s, transform .5s; }
+  .pstage.is-punch .punch { opacity: 1; transform: none; }
+  .punch p { font-size: clamp(24px, 6.4vw, 46px); font-weight: 900; line-height: 1.12; }
+  .punch p span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .pstage.is-punch .client, .pstage.is-punch .beats { opacity: .25; transition: opacity .5s; }
+
+  .after { padding: 70px 16px 90px; text-align: center; display: grid; gap: 14px; justify-items: center; }
+  .after p { font-size: clamp(18px, 2.4vw, 22px); line-height: 1.55; color: var(--ink-2); max-width: 30em; }
+  .after p b { color: #fff; }
+  .after .big { font-size: clamp(24px, 4vw, 40px); font-weight: 900; color: #fff; line-height: 1.2; }
+  .after .big span { color: var(--coral); }
+  .ill { font-size: 11.5px; color: var(--ink-3); }
+</style>
+</head>
+<body>
+<p class="note">אופציה לבדיקה בלבד. הדף באתר לא השתנה. גללו לאט.</p>
+<div class="pad">↓ גללו</div>
+
+<div class="track" data-track>
+  <div class="pstage" data-stage>
+    <div class="notif" aria-live="assertive"><span class="ic">₪</span><div><small>עכשיו</small><b>הלקוחה שלך שילמה עכשיו.</b><span>למתחרה שלך.</span></div></div>
+
+    <div class="box">
+      <p class="intro">תעשייה שלמה מלמדת אתכם איך לגרום ללקוח להתאהב בכם.<small>רק שכחו ללמד אתכם מה צריך לקרות כדי שהוא גם יקנה מכם.</small></p>
+
+      <div class="client">
+        <div class="who"><span class="av">♥</span><div><b>הלקוחה שלך</b><span>המחשה</span></div></div>
+        <div class="mrow"><span>כמה היא אוהבת אתכם</span><b data-pct>0%</b></div>
+        <div class="meter"><i></i></div>
+      </div>
+
+      <div class="beats">
+        <div class="beat" data-b="0"><span class="m">MONTH 1</span><span class="l">מקצועיות <span class="chk">✓</span></span><span class="q">היא מתחילה לעקוב.</span></div>
+        <div class="beat" data-b="1"><span class="m">MONTH 3</span><span class="l">בידול <span class="chk">✓</span></span><span class="q">היא שומרת כל פוסט.</span></div>
+        <div class="beat" data-b="2"><span class="m">MONTH 5</span><span class="l">הזדהות ואותנטיות <span class="chk">✓</span></span><span class="q">"את בדיוק כמוני."</span></div>
+        <div class="beat" data-b="3"><span class="m">MONTH 6</span><span class="l">היא מוכנה.</span><span class="q">השקעתם חודשים ואלפי שקלים כדי להגיע לרגע הזה.</span></div>
+      </div>
+    </div>
+
+    <div class="punch"><p>ואיזה באסה להיות העסק שהלקוח הכי אוהב,<br><span>כשהמתחרה שלכם הוא העסק שהוא משלם לו.</span></p></div>
+  </div>
+</div>
+
+<div class="after">
+  <p>מקצועיות, בידול, הזדהות. כולם צודקים, <b>אבל כל אחד מוכר לכם רק חלק מהמשוואה.</b> אפשר להיות העסק שהלקוח הכי רוצה לעבוד איתו, ועדיין לא לגבש אצלו החלטת רכישה.</p>
+  <p class="big">מספיק שהמתחרה יודע לחבר בין שלוש השכבות טוב יותר מכם. <span>זה כל ההבדל.</span></p>
+</div>
+
+<script>
+(() => {
+  const track = document.querySelector("[data-track]"), stage = document.querySelector("[data-stage]"), pct = document.querySelector("[data-pct]");
+  const beats = [...document.querySelectorAll(".beat")];
+  const upd = () => {
+    const r = track.getBoundingClientRect(), total = track.offsetHeight - innerHeight;
+    const p = Math.max(0, Math.min(1, -r.top / total));
+    // 0 → .62: love climbs to 97% through 4 beats; .66: payment to the competitor; .78: punchline
+    const crash = p > .66, punch = p > .76;
+    const heat = crash ? 0 : Math.min(.97, p / .62 * .97);
+    stage.style.setProperty("--heat", heat.toFixed(3));
+    pct.textContent = Math.round(heat * 100) + "%";
+    const bi = p < .06 ? -1 : Math.min(3, Math.floor((p - .06) / .14));
+    beats.forEach((b, i) => b.classList.toggle("on", !crash && i === bi));
+    stage.classList.toggle("crash", crash);
+    stage.classList.toggle("is-punch", punch);
+  };
+  addEventListener("scroll", upd, { passive: true }); addEventListener("resize", upd); upd();
+})();
+</script>
+</body>
+</html>
