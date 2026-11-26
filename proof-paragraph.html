@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>הפסקה · 4 אופציות</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@500;700&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/components.css">
+<style>
+  :root { --night: #120806; --ink: #FFF6F0; --ink-2: #E9D6CB; --ink-3: #C9A99B; --label: #FFB59A; --pink: #FCCBF0; --coral: #FF5A57;
+          --grad: linear-gradient(270deg, #FCCBF0 0%, #FD92A3 45%, #FF5A57 100%);
+          --btn: linear-gradient(260deg, #E8433F 0%, #FF5A57 50%, #FF8A6B 100%); --script: "Playpen Sans Hebrew", cursive; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--night); color: var(--ink); overflow-x: clip; }
+  body { font-family: var(--font-he, "Almoni", system-ui, sans-serif); }
+  h2, h3, p { margin: 0; }
+  .note { width: min(760px, calc(100% - 32px)); margin: 24px auto 0; padding: 10px 14px; border-radius: 14px; border: 1px dashed rgba(255,181,154,.5); color: var(--label); font-size: 13.5px; text-align: center; }
+  .opt { position: relative; isolation: isolate; padding: 70px 16px 80px; border-top: 1px solid rgba(255,255,255,.07); overflow-x: clip; }
+  .badge { display: block; width: max-content; margin: 0 auto 26px; font-size: 13px; font-weight: 900; padding: 6px 14px; border-radius: 99px; background: var(--btn); color: #fff; }
+  .in { width: min(860px, 100%); margin-inline: auto; }
+  .hot { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .para p { font-size: clamp(17px, 2vw, 20px); line-height: 1.65; color: var(--ink-2); margin-bottom: 14px; text-align: center; }
+  .para p b { color: #fff; }
+  .punch { font-size: clamp(26px, 4.6vw, 48px); font-weight: 900; line-height: 1.15; text-align: center; }
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s, transform .9s cubic-bezier(.2,.9,.3,1); }
+  .reveal.on { opacity: 1; transform: none; }
+
+  /* ===== 1. love vs money ===== */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 34px auto 26px; width: min(640px, 100%); }
+  .ph { border-radius: 30px; padding: 8px; background: linear-gradient(160deg, #3a2420, #140907); box-shadow: 0 0 0 1px rgba(255,255,255,.1), 0 30px 60px -30px #000; }
+  .ph .sc { border-radius: 23px; min-height: 300px; background: #0f0a09; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
+  .ph h4 { margin: 0 0 4px; font-size: 13px; font-weight: 900; text-align: center; color: var(--ink-3); }
+  .bub { align-self: flex-start; font-size: 13px; padding: 7px 10px; border-radius: 13px 13px 13px 4px; background: #262022; color: #e6dbd6; }
+  .heart { font-size: 22px; text-align: center; letter-spacing: 4px; }
+  .pay { margin-top: auto; border-radius: 16px; padding: 10px; background: rgba(255,255,255,.95); color: #1c1c1c; display: grid; gap: 2px; box-shadow: 0 10px 30px -8px rgba(58,208,122,.6); }
+  .pay small { font-size: 10.5px; color: #555; font-weight: 700; }
+  .pay b { font-size: 14px; }
+  .pay i { font-style: normal; font-size: 18px; font-weight: 900; color: #1b9e55; direction: ltr; text-align: right; }
+  .ph.win { box-shadow: 0 0 0 1px rgba(58,208,122,.4), 0 0 50px -10px rgba(58,208,122,.5), 0 30px 60px -30px #000; }
+  .ph.lose .sc { opacity: .9; }
+  .cap { font-size: 13px; font-weight: 900; text-align: center; margin-top: 8px; }
+  .ill { font-size: 11px; color: var(--ink-3); text-align: center; }
+
+  /* ===== 2. beats ===== */
+  .beats { display: grid; gap: 34vh; padding: 10vh 0 6vh; }
+  .beat { text-align: center; font-size: clamp(24px, 4.4vw, 46px); font-weight: 900; line-height: 1.2; }
+  .beat s { text-decoration-color: var(--coral); text-decoration-thickness: 4px; color: var(--ink-3); }
+  .beat small { display: block; margin-top: 10px; font-size: clamp(15px, 1.8vw, 19px); font-weight: 400; color: var(--ink-2); line-height: 1.55; }
+
+  /* ===== 3. trends crossed out ===== */
+  .trends { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px; margin: 8px 0 28px; }
+  .stamp { position: relative; font-size: clamp(18px, 2.6vw, 26px); font-weight: 900; padding: 10px 18px; border-radius: 14px; border: 2px solid rgba(255,255,255,.25); color: var(--ink-2); transform: rotate(-3deg); }
+  .stamp:nth-child(3) { transform: rotate(2deg); } .stamp:nth-child(5) { transform: rotate(-1deg); }
+  .stamp::after { content: ""; position: absolute; left: -6px; right: -6px; top: 50%; height: 4px; border-radius: 2px; background: var(--coral); transform: scaleX(0) rotate(-6deg); transform-origin: right; transition: transform .5s; }
+  .trends.on .stamp::after { transform: scaleX(1) rotate(-6deg); }
+  .trends.on .stamp:nth-child(1)::after { transition-delay: .2s; } .trends.on .stamp:nth-child(3)::after { transition-delay: .7s; } .trends.on .stamp:nth-child(5)::after { transition-delay: 1.2s; }
+  .arrow { color: var(--ink-3); font-size: 20px; }
+  .slot { font-size: clamp(22px, 3vw, 32px); font-weight: 900; padding: 12px 24px; border-radius: 16px; border: 2px dashed var(--coral); color: var(--coral); min-width: 120px; text-align: center; box-shadow: 0 0 40px -8px rgba(255,90,87,.6); }
+  .slot span { display: none; } .trends.done .slot span { display: inline; } .trends.done .slot em { display: none; }
+  .trends.done .slot { background: var(--btn); color: #fff; border-style: solid; border-color: transparent; }
+  .slot em { font-style: normal; }
+
+  /* ===== 4. intro to switches ===== */
+  .sw { display: grid; gap: 10px; width: min(420px, 100%); margin: 28px auto 0; }
+  .s { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-radius: 18px; background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.13); }
+  .s b { font-size: 20px; font-weight: 900; }
+  .tog { width: 56px; height: 30px; border-radius: 99px; background: #3ad07a; position: relative; }
+  .tog::after { content: ""; position: absolute; top: 3px; right: 29px; width: 24px; height: 24px; border-radius: 50%; background: #fff; }
+  .s.key { border-color: rgba(255,90,87,.6); box-shadow: 0 0 30px -8px rgba(255,90,87,.6); }
+  .s.key .tog { background: rgba(255,90,87,.3); outline: 2px dashed var(--coral); outline-offset: 3px; } .s.key .tog::after { right: 3px; }
+  .s.key small { color: var(--label); font-weight: 800; font-size: 12.5px; }
+  .more { text-align: center; font-size: 13px; color: var(--ink-3); margin-top: 12px; }
+</style>
+</head>
+<body>
+<p class="note">4 אופציות לבדיקה בלבד. הדף באתר לא השתנה. הטקסט הוא הפסקה שלך, מילה במילה.</p>
+
+<!-- ===== 1 ===== -->
+<section class="opt">
+  <span class="badge">אופציה 1 · האהבה מול הכסף</span>
+  <div class="in">
+    <div class="para reveal">
+      <p><b>תעשייה שלמה מלמדת אתכם איך לגרום ללקוח להתאהב בכם.</b> רק שכחו ללמד אתכם מה צריך לקרות כדי שהוא גם יקנה מכם.</p>
+      <p>בהתחלה מכרו לכם מקצועיות, אחר כך מכרו לכם בידול ועכשיו כולם צורחים הזדהות ואותנטיות. והקטע? כולם צודקים, אבל כל אחד מוכר לכם רק חלק מהמשוואה. כי אתם יכולים להיות הכי מקצועיים, הכי זכירים ואפילו העסק שהלקוח הכי רוצה לעבוד איתו, ועדיין לא להצליח לגבש אצלו החלטת רכישה. <b>ובזמן שאתם משקיעים אלפי שקלים בלייצר את כל זה, מספיק שמתחרה שלכם ידע לחבר בין שלוש השכבות טוב יותר מכם, כדי שהוא יסגור עסקה עם לקוח שאתם השקעתם חודשים לחמם.</b></p>
+    </div>
+    <div class="split reveal">
+      <div>
+        <div class="ph lose"><div class="sc"><h4>אתם</h4><div class="heart">♥ ♥ ♥</div><span class="bub">איזה תוכן מהמם</span><span class="bub">את מדהימה 😍</span><span class="bub">שמרתי!</span><span class="bub">אחשוב על זה</span></div></div>
+        <p class="cap">העסק שהוא הכי אוהב</p>
+      </div>
+      <div>
+        <div class="ph win"><div class="sc"><h4>המתחרה</h4><span class="bub">איך משלמים?</span><div class="pay"><small>עכשיו</small><b>התקבל תשלום חדש</b><i>✓ שולם</i></div></div></div>
+        <p class="cap" style="color:#7be3a6">העסק שהוא משלם לו</p>
+      </div>
+    </div>
+    <p class="ill">המחשה</p>
+    <p class="punch reveal" style="margin-top:22px">ואיזה באסה להיות העסק שהלקוח הכי אוהב, <span class="hot">כשהמתחרה שלכם הוא העסק שהוא משלם לו.</span></p>
+  </div>
+</section>
+
+<!-- ===== 2 ===== -->
+<section class="opt">
+  <span class="badge">אופציה 2 · משפט אחרי משפט בגלילה</span>
+  <div class="in beats">
+    <p class="beat reveal">תעשייה שלמה מלמדת אתכם איך לגרום ללקוח <span class="hot">להתאהב בכם.</span><small>רק שכחו ללמד אתכם מה צריך לקרות כדי שהוא גם יקנה מכם.</small></p>
+    <p class="beat reveal"><s>מקצועיות.</s> <s>בידול.</s> <s>הזדהות ואותנטיות.</s><small>כולם צודקים. אבל כל אחד מוכר לכם רק חלק מהמשוואה. אפשר להיות הכי מקצועיים, הכי זכירים ואפילו העסק שהלקוח הכי רוצה לעבוד איתו, ועדיין לא לגבש אצלו החלטת רכישה.</small></p>
+    <p class="beat reveal">ובזמן שאתם משקיעים אלפי שקלים,<small>מספיק שמתחרה שלכם ידע לחבר בין שלוש השכבות טוב יותר מכם, כדי שהוא יסגור עסקה עם לקוח שאתם השקעתם חודשים לחמם.</small></p>
+    <p class="beat reveal" style="font-size:clamp(28px,5.4vw,58px)">ואיזה באסה להיות העסק שהלקוח הכי אוהב, <span class="hot">כשהמתחרה שלכם הוא העסק שהוא משלם לו.</span></p>
+  </div>
+</section>
+
+<!-- ===== 3 ===== -->
+<section class="opt">
+  <span class="badge">אופציה 3 · הטרנדים שנמחקים</span>
+  <div class="in" style="text-align:center">
+    <p class="punch reveal" style="margin-bottom:20px">תעשייה שלמה מלמדת אתכם איך לגרום ללקוח <span class="hot">להתאהב בכם.</span></p>
+    <div class="trends" data-trends>
+      <span class="stamp">מקצועיות</span><span class="arrow">←</span><span class="stamp">בידול</span><span class="arrow">←</span><span class="stamp">הזדהות ואותנטיות</span><span class="arrow">←</span>
+      <span class="slot"><em>?</em><span>החלטה</span></span>
+    </div>
+    <div class="para reveal">
+      <p>כולם צודקים, אבל כל אחד מוכר לכם רק חלק מהמשוואה. <b>אפשר להיות הכי מקצועיים, הכי זכירים ואפילו העסק שהלקוח הכי רוצה לעבוד איתו, ועדיין לא לגבש אצלו החלטת רכישה.</b> ובזמן שאתם משקיעים אלפי שקלים, מספיק שמתחרה שלכם ידע לחבר בין שלוש השכבות טוב יותר מכם, כדי שהוא יסגור עסקה עם לקוח שאתם השקעתם חודשים לחמם.</p>
+    </div>
+    <p class="punch reveal" style="margin-top:10px;font-size:clamp(22px,3.6vw,38px)">ואיזה באסה להיות העסק שהלקוח הכי אוהב, <span class="hot">כשהמתחרה שלכם הוא העסק שהוא משלם לו.</span></p>
+  </div>
+</section>
+
+<!-- ===== 4 ===== -->
+<section class="opt">
+  <span class="badge">אופציה 4 · פתיח למתגים</span>
+  <div class="in">
+    <div class="para reveal">
+      <p><b>תעשייה שלמה מלמדת אתכם איך לגרום ללקוח להתאהב בכם.</b> רק שכחו ללמד אתכם מה צריך לקרות כדי שהוא גם יקנה מכם.</p>
+      <p>בהתחלה מכרו לכם מקצועיות, אחר כך מכרו לכם בידול ועכשיו כולם צורחים הזדהות ואותנטיות. והקטע? כולם צודקים, אבל כל אחד מוכר לכם רק חלק מהמשוואה...</p>
+    </div>
+    <div class="sw reveal">
+      <div class="s"><b>סמכות</b><span class="tog"></span></div>
+      <div class="s"><b>הזדהות ואמון</b><span class="tog"></span></div>
+      <div class="s key"><div><b>החלטה</b><br><small>החלק החסר במשוואה</small></div><span class="tog"></span></div>
+    </div>
+    <p class="more">(כאן ממשיכה ההדמיה של המתגים מהטיוטה הקודמת: מדליקים "החלטה", והטלפון מתמלא בהודעות האמיתיות)</p>
+    <p class="punch reveal" style="margin-top:26px;font-size:clamp(22px,3.6vw,38px)">ואיזה באסה להיות העסק שהלקוח הכי אוהב, <span class="hot">כשהמתחרה שלכם הוא העסק שהוא משלם לו.</span></p>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } }), { threshold: .3 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  const tr = document.querySelector("[data-trends]");
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { tr.classList.add("on"); setTimeout(() => tr.classList.add("done"), 1900); o.disconnect(); } }, { threshold: .5 }).observe(tr);
+</script>
+</body>
+</html>
