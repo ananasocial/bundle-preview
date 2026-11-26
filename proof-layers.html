@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>שיטת השכבות · אופציה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans+Hebrew:wght@500;700&family=Josefin+Sans:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/components.css">
+<style>
+  :root { --night: #120806; --ink: #FFF6F0; --ink-2: #E9D6CB; --ink-3: #C9A99B; --label: #FFB59A; --pink: #FCCBF0; --coral: #FF5A57;
+          --grad: linear-gradient(270deg, #FCCBF0 0%, #FD92A3 45%, #FF5A57 100%);
+          --btn: linear-gradient(260deg, #E8433F 0%, #FF5A57 50%, #FF8A6B 100%); --script: "Playpen Sans Hebrew", cursive; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--night); color: var(--ink); overflow-x: clip; }
+  body { font-family: var(--font-he, "Almoni", system-ui, sans-serif); }
+  h2, p { margin: 0; }
+  .note { width: min(760px, calc(100% - 32px)); margin: 24px auto 0; padding: 10px 14px; border-radius: 14px; border: 1px dashed rgba(255,181,154,.5); color: var(--label); font-size: 13.5px; text-align: center; }
+
+  .layers { position: relative; isolation: isolate; padding: 56px 16px 64px; overflow-x: clip; text-align: center; }
+  .kick { font-family: "Josefin Sans", sans-serif; font-weight: 700; letter-spacing: .28em; font-size: 12.5px; color: var(--label); direction: ltr; display: block; margin-bottom: 12px; }
+  .kick b { color: #fff; }
+  h2 { font-size: clamp(32px, 6vw, 68px); font-weight: 900; line-height: 1.04; }
+  h2 .l2 { display: block; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* the stage */
+  .stage { position: relative; width: min(560px, 100%); height: 520px; margin: 30px auto 0; }
+  .plate { position: absolute; left: 50%; width: 190px; height: 190px; margin-left: -95px; border-radius: 26px;
+           transform: rotateX(58deg) rotateZ(45deg); transform-style: preserve-3d;
+           background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.04)); border: 1.5px solid rgba(255,255,255,.35);
+           box-shadow: 0 1px 0 rgba(255,255,255,.2), 6px 6px 0 rgba(255,255,255,.06), 12px 12px 30px rgba(0,0,0,.6);
+           backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .plate.p1 { top: 300px; } .plate.p2 { top: 180px; } .plate.p3 { top: 60px; }
+  .plate.p3 { background: linear-gradient(135deg, rgba(255,138,107,.85), rgba(255,90,87,.55)); border-color: rgba(255,200,190,.9);
+              box-shadow: 6px 6px 0 rgba(232,67,63,.5), 0 0 60px 10px rgba(255,90,87,.55); }
+  .tag { position: absolute; z-index: 3; display: grid; justify-items: center; gap: 2px; pointer-events: none; }
+  .tag b { font-size: 24px; font-weight: 900; line-height: 1; text-shadow: 0 2px 14px rgba(0,0,0,.6); }
+  .tag span { font-size: 13px; font-weight: 800; color: var(--ink-2); }
+  .tag.t1 { top: 380px; } .tag.t2 { top: 260px; } .tag.t3 { top: 140px; }
+  .tag { left: 50%; transform: translateX(-50%); }
+  .tag.t3 span { color: #fff; }
+
+  /* the noise outside: what everyone shouts */
+  .shout { position: absolute; z-index: 4; font-size: 13px; font-weight: 800; padding: 6px 11px; border-radius: 14px 14px 14px 4px; white-space: nowrap;
+           background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); color: var(--ink-2); }
+  .shout.quiet { background: none; border-style: dashed; color: var(--ink-3); letter-spacing: .2em; }
+  .flag { position: absolute; z-index: 4; top: 22px; left: 50%; transform: translateX(-50%); font-size: 13px; font-weight: 900; padding: 6px 13px; border-radius: 999px; background: #fff; color: #D9302C; white-space: nowrap;
+          box-shadow: 0 12px 26px -10px rgba(0,0,0,.8); }
+
+  /* drop-in */
+  .stage .plate, .stage .tag, .stage .shout, .stage .flag { opacity: 0; transition: opacity .5s, transform .7s cubic-bezier(.2,1.25,.4,1); }
+  .stage .plate { transform: translateY(-60px) rotateX(58deg) rotateZ(45deg); }
+  .stage.on .plate { opacity: 1; transform: rotateX(58deg) rotateZ(45deg); }
+  .stage.on .tag, .stage.on .shout, .stage.on .flag { opacity: 1; }
+  .stage.on .p1, .stage.on .t1 { transition-delay: .1s; } .stage.on .p2, .stage.on .t2 { transition-delay: .45s; } .stage.on .p3, .stage.on .t3 { transition-delay: .8s; }
+  .stage.on .s1 { transition-delay: .3s; } .stage.on .s2 { transition-delay: .6s; } .stage.on .s3 { transition-delay: .9s; } .stage.on .s4 { transition-delay: 1.1s; }
+  .stage.on .s5, .stage.on .flag { transition-delay: 1.4s; }
+  @media (prefers-reduced-motion: no-preference) { .stage.on .p3 { animation: glow 2.4s ease-in-out 1.6s infinite; } }
+  @keyframes glow { 50% { box-shadow: 6px 6px 0 rgba(232,67,63,.5), 0 0 90px 22px rgba(255,90,87,.75); } }
+
+  .punch { margin-top: 18px; display: grid; gap: 6px; justify-items: center; }
+  .punch p { font-size: clamp(19px, 2.4vw, 24px); font-weight: 900; }
+  .punch p span { color: var(--coral); }
+  .punch small { font-size: 15px; color: var(--ink-2); }
+  @media (prefers-reduced-motion: reduce) { .stage * { transition: none !important; opacity: 1 !important; } }
+  @media (max-width: 600px) { h2 { font-size: 7.6vw; } }
+</style>
+</head>
+<body>
+<p class="note">אופציה לבדיקה בלבד. הדף באתר לא השתנה. מחליף את "התוכן שלכם הוא שיחת המכירה".</p>
+
+<section class="layers">
+  <span class="kick">THE <b>LAYERS</b> METHOD · ANANAS</span>
+  <h2>כולם מוכרים לכם שכבה אחת.<span class="l2">השיווק שלכם צריך שלוש.</span></h2>
+
+  <div class="stage" data-stage aria-label="שלוש השכבות: סמכות, הזדהות ואמון, החלטה">
+    <span class="flag">השכבה שאף אחד לא מדבר עליה</span>
+
+    <div class="plate p1"></div>
+    <div class="tag t1"><b>סמכות</b><span>איך את חושבת</span></div>
+    <div class="plate p2"></div>
+    <div class="tag t2"><b>הזדהות ואמון</b><span>מה עברת</span></div>
+    <div class="plate p3"></div>
+    <div class="tag t3"><b>החלטה</b><span>למה עכשיו</span></div>
+
+    <span class="shout s1" style="top:450px;right:4%">״תהיו מקצועיים!״</span>
+    <span class="shout s2" style="top:350px;left:0">״תבנו סמכות!״</span>
+    <span class="shout s3" style="top:300px;right:0">״תהיו אותנטיים!״</span>
+    <span class="shout s4" style="top:205px;left:2%">״תייצרו הזדהות!״</span>
+    <span class="shout s5 quiet" style="top:120px;left:6%">. . .</span>
+  </div>
+
+  <div class="punch">
+    <p>צפיות בלי קניות? <span>חסרה לכם שכבה.</span></p>
+    <small>שלושתן חייבות לעבוד יחד.</small>
+  </div>
+</section>
+
+<script>
+  const st = document.querySelector("[data-stage]");
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { st.classList.add("on"); o.disconnect(); } }, { threshold: .35 }).observe(st);
+</script>
+</body>
+</html>
