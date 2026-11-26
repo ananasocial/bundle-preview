@@ -257,6 +257,12 @@
   .offer .was s { color: var(--ink-3); }
   .amount { display: flex; align-items: flex-start; gap: 4px; font-size: clamp(84px, 10vw, 130px); font-weight: 900; line-height: .9; letter-spacing: -.04em; }
   .amount em { font-style: normal; font-size: .4em; margin-top: .14em; }
+  .amount-inst { direction: ltr !important; justify-content: flex-end; font-size: clamp(72px, 9vw, 120px); }
+  .amount-inst .x3 { order: 1; font-style: normal; font: inherit; color: var(--ink); margin-inline-end: .06em; }
+  .amount-inst [data-inst] { order: 2; }
+  .amount-inst em { order: 3; }
+  .inst-full { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: 14px 0 0; color: var(--ink-2); font-size: clamp(17px, 1.9vw, 20px); }
+  .inst-full b { font-size: clamp(34px, 4vw, 46px); font-weight: 900; color: var(--ink); line-height: 1; letter-spacing: -.02em; }
   .offer .zara { font-size: 17px; color: var(--ink-2); line-height: 1.5; }
   .offer .zara strong { color: var(--ink); }
   .fine { font-size: 14px; color: var(--label); font-weight: 700; text-align: center; }
@@ -2035,7 +2041,8 @@
         <hr>
         <p class="zara">ייעוץ שיווקי אישי עולה אלפי שקלים. כאן אתם מקבלים את השיטה שלנו, את ההדרכות ואת הכלים, <strong>בפחות ממחיר של מעיל בזארה.</strong></p>
         <div>
-          <div class="amount"><span data-amount>450</span><em class="hot">₪</em></div>
+          <div class="amount amount-inst" dir="ltr"><span data-inst>150</span><em class="hot">₪</em><i class="x3">3×</i></div>
+          <p class="inst-full"><b><span data-amount>450</span> ₪</b> <span>ב-3 תשלומים, או בתשלום אחד</span></p>
         </div>
         <a class="ab-btn ab-btn--main" href="#offer" data-buy><span data-cta>כן! תהפכו את עולמי</span><span class="ab-btn__c"><svg><use href="#arrow"/></svg></span></a>
         <div class="clock-wrap" data-sale>
@@ -2227,6 +2234,8 @@ document.documentElement.classList.add("js");
     document.querySelectorAll("[data-price-short]").forEach(el => el.textContent = `לבאנדל ב-${price} ₪`);
     document.querySelectorAll("[data-amount]").forEach(el => el.textContent = price);
   }
+  // offer block shows the price as 3 payments
+  document.querySelectorAll("[data-inst]").forEach(el => el.textContent = Math.round(price / 3));
 
   // countdown
   const clocks = [...document.querySelectorAll("[data-clock]")];
