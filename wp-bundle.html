@@ -1587,6 +1587,14 @@
   .brain-in span { font-size: clamp(16px, 2vw, 19px); color: var(--ink-2); line-height: 1.5; }
   /* phone hero: the third reply bubble is back, spaced so none overlap */
   @media (max-width: 979px) { .hero-c .c-left .m-only { display: block !important; } .hero-c .c-left { gap: 14px !important; } .hero-c .c-left .st { margin-block: 0 !important; } }
+  /* body text a notch bigger on phones (titles and bold untouched) */
+  @media (max-width: 979px) {
+    main .lead, main .flow-detail, main .stack > p:not([class]) { font-size: 19.5px !important; }
+    main .zara, main details p, main .fit li, main .ihead p, main .sd-after p, main .sd-top p:not(.sd-lead1) { font-size: 18.5px !important; }
+    main .how, main .brain-in span, main .sd-intro { font-size: 18px !important; }
+    main .bf-gift, main .f-never { font-size: 17px !important; }
+    main .cs-steps li { font-size: 17px !important; }
+  }
 </style>
 
 <div class="ab-root" dir="rtl">
