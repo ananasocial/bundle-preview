@@ -1347,6 +1347,15 @@
   @media (max-width: 600px) { .ihead h2 { font-size: 8.4vw; } .ihead h2 .l2 { font-size: 1.12em; } }
 
   #proof .iwall { margin-top: 8px; }
+  /* brain: more presence */
+  @media (max-width: 979px) { .mind { width: min(390px, 100%) !important; } }
+  @media (min-width: 980px) { .mind { width: 300px; } }
+  .mind .aura { opacity: 1; }
+  .mind svg { filter: drop-shadow(0 0 18px rgba(255,90,87,.35)); }
+  /* message carousels: no mask on the scrolling row (iOS paints a black box while scrolling) */
+  .msgs-row { -webkit-mask: none !important; mask: none !important; }
+  .msgs { position: relative; }
+  .msg { transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
 </style>
 </head>
 <body>
@@ -1409,7 +1418,7 @@
             <span><b>48</b><i>שעות</i></span><em>:</em><span><b>00</b><i>דקות</i></span><em>:</em><span class="secs"><b>00</b><i>שניות</i></span>
           </div>
           <div class="f-bar" aria-hidden="true"><i data-fomo-bar></i></div>
-          <p class="f-never">בעוד 48 שעות, אותו באנדל בדיוק יעלה 950 ₪. <b>ההבדל היחיד: מתי לחצתם.</b></p>
+          <p class="f-never">בעוד 48 שעות המחיר הזה נעלם. <b>ההבדל היחיד: מתי לחצתם.</b></p>
         </div>
       </div>
     </div>
@@ -1540,56 +1549,56 @@
     <figure class="imsg" style="--r:-2deg;--side:start">
       <span class="iamt"><b dir="ltr">+10,000 ₪</b><span>בהכנסה מתחילת הקורס</span></span>
       <div class="ishot"><img src="assets/msg-biz-d9.png" alt="אלמוג: סה״כ הכנסות 26,111 ₪, וזה שההכנסה שלי עלתה ב-10,000 ₪ מתחילת הקורס" width="552" height="634" loading="lazy">
-        <i class="imk" style="right:3%;top:45.5%;width:93%;height:9.5%"></i></div>
+        <i class="imk" style="right:4.5%;top:45.9%;width:73.6%;height:3.8%"></i><i class="imk" style="right:4.5%;top:50.2%;width:26.5%;height:4.3%"></i></div>
       <figcaption class="iwho">אלמוג</figcaption>
     </figure>
 
     <figure class="imsg ialt" style="--r:2.5deg;--side:end">
       <span class="iamt"><b>6 ליווים</b><span>תוך 24 שעות</span></span>
       <div class="ishot"><img src="assets/proof-avishag.jpg" alt="אבישג: סגרתי 6 ליווים תוך 24 שעות מיום ההשקה" width="760" height="724" loading="lazy">
-        <i class="imk" style="right:3%;top:39%;width:62%;height:10%"></i></div>
+        <i class="imk" style="right:1.8%;top:39.8%;width:57%;height:5.0%"></i></div>
       <figcaption class="iwho">אבישג</figcaption>
     </figure>
 
     <figure class="imsg" style="--r:-1.5deg;--side:start">
       <span class="iamt"><b dir="ltr">14,396 ₪</b><span>עסקה אחת. ליווי רביעי.</span></span>
       <div class="ishot"><img src="assets/proof-aviya.png" alt="אביה: התראת תשלום על 14,396 ₪, ליווי מספר 4" width="603" height="817" loading="lazy">
-        <i class="imk" style="right:15%;top:17%;width:70%;height:9.5%"></i></div>
+        <i class="imk" style="right:16.8%;top:15.3%;width:63.6%;height:9.9%"></i></div>
       <figcaption class="iwho">אביה</figcaption>
     </figure>
 
     <figure class="imsg ialt ishort" style="--r:2deg;--side:end">
       <span class="iamt"><b dir="ltr">11,000 ₪</b><span>לחודש, ל-3 חודשים</span></span>
       <div class="ishot"><img src="assets/msg-biz-d4.png" alt="גפן: סגרתי לקוח שמאוד רציתי לעבוד איתו, ב-11 אלף לחודש פלוס מע״מ ל-3 חודשים" width="508" height="194" loading="lazy">
-        <i class="imk" style="right:8%;top:62%;width:64%;height:17%"></i></div>
+        <i class="imk" style="right:1.5%;top:61.8%;width:66.5%;height:14.5%"></i></div>
       <figcaption class="iwho">גפן</figcaption>
     </figure>
 
     <figure class="imsg" style="--r:-2.5deg;--side:start">
       <span class="iamt"><b dir="ltr">10,500 ₪</b><span>פעם סגרה 2,000–3,000</span></span>
       <div class="ishot"><img src="assets/msg-biz-d3.png" alt="אנסטסיה: סגרתי היום לקוח ב-10,500, כשפעם הייתי סוגרת בין 2,000 ל-3,000" width="460" height="510" loading="lazy">
-        <i class="imk" style="right:3%;top:70%;width:60%;height:5.5%"></i></div>
+        <i class="imk" style="right:4.4%;top:70.1%;width:47.5%;height:3.8%"></i></div>
       <figcaption class="iwho">אנסטסיה</figcaption>
     </figure>
 
     <figure class="imsg ialt" style="--r:1.5deg;--side:end">
       <span class="iamt"><b dir="ltr">8,100 ₪</b><span>חצי שנה ליווי</span></span>
       <div class="ishot"><img src="assets/msg-biz-yael.png" alt="יעל: פעם ראשונה שמכרתי ליווי במחיר שאני באמת רוצה, חצי שנה ליווי ב-8,100 שח" width="632" height="566" loading="lazy">
-        <i class="imk" style="right:35%;top:56%;width:36%;height:5.5%"></i></div>
+        <i class="imk" style="right:6%;top:27%;width:61%;height:9%"></i></div>
       <figcaption class="iwho">יעל</figcaption>
     </figure>
 
     <figure class="imsg" style="--r:-1deg;--side:start">
       <span class="iamt"><b dir="ltr">7,500 ₪</b><span>מליד אורגני</span></span>
       <div class="ishot"><img src="assets/proof-hadar.jpg" alt="הדר: ליווי חדש נסגר ב-7500 פלוס מעמ, הליד הגיע אורגני" width="720" height="671" loading="lazy">
-        <i class="imk" style="right:12%;top:26%;width:61%;height:8.5%"></i></div>
+        <i class="imk" style="right:12.5%;top:27.4%;width:57%;height:5.6%"></i></div>
       <figcaption class="iwho">הדר</figcaption>
     </figure>
 
     <figure class="imsg ialt" style="--r:2deg;--side:end">
       <span class="iamt"><b>8 בפנים</b><span>יומיים אחרי ההשקה</span></span>
       <div class="ishot"><img src="assets/proof-or-2days.png" alt="אור, יומיים אחרי ההשקה: נסגרו היום עוד 5, אנחנו עם 8 בפנים" width="483" height="331" loading="lazy">
-        <i class="imk" style="right:4%;top:68%;width:57%;height:10%"></i></div>
+        <i class="imk" style="right:15.6%;top:52.3%;width:35.5%;height:5.2%"></i><i class="imk" style="right:15.6%;top:69.8%;width:55%;height:5.7%"></i></div>
       <figcaption class="iwho">אור</figcaption>
     </figure>
   </div>
@@ -1611,7 +1620,7 @@
   <div class="wrap">
     <div class="stack center reveal">
       <span class="script">מה בפנים?</span>
-      <h2 class="title"><span class="tl">5 הדרכות, כחצי שעה כל אחת.</span><span class="hot nb">מהראש של הלקוח, ועד הקנייה.</span></h2>
+      <h2 class="title"><span class="tl">5 הדרכות. כל אחת פותחת עוד דלת בראש של הלקוח.</span><span class="hot nb">מהראש של הלקוח, ועד הקנייה.</span></h2>
     </div>
     <div class="flow" data-flow aria-roledescription="קרוסלה" aria-label="5 ההדרכות בבאנדל"></div>
     <div class="player glass">
@@ -1827,7 +1836,7 @@
       <ul>
         <li><svg class="ic"><use href="#x"/></svg>אתם מחפשים מישהו שיעשה לכם את השיווק</li>
         <li><svg class="ic"><use href="#x"/></svg>אתם מחפשים טריק למיליון צפיות מחר</li>
-        <li><svg class="ic"><use href="#x"/></svg>אין לכם 2.5 שעות לצפייה, וקצת זמן ליישום</li>
+        <li><svg class="ic"><use href="#x"/></svg>אין לכם זמן לצפות וליישם</li>
       </ul>
     </div>
   </div>
@@ -2125,8 +2134,8 @@ document.documentElement.classList.add("js");
     mt.forEach(clearTimeout); mt = [];
     if (!e.isIntersecting) return;
     setStage(0);
-    [1, 2, 3, 4].forEach(n => mt.push(setTimeout(() => setStage(n), 500 + n * 1100)));
-  }, { threshold: .55 }).observe(mind);
+    [1, 2, 3, 4].forEach(n => mt.push(setTimeout(() => setStage(n), 250 + n * 600)));
+  }, { threshold: .35 }).observe(mind);
   setStage(0);
 
   // ---- AI tool demo: 3 scenes on a loop, only while on screen ----
